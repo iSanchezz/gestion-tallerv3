@@ -1,13 +1,12 @@
 package view;
 
+import dao.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
-import dao.ConexionDB;
 import model.Cliente;
 import model.Empleado;
 import model.Proveedor;
@@ -59,8 +58,8 @@ public class Taller {
 
         
         try(PreparedStatement stmt= conexion.prepareStatement(query)){ 
-=======
-        /* 
+
+        
         
 
 
@@ -77,7 +76,7 @@ public class Taller {
 
             
 
- */
+ 
         Cliente cliente = new Cliente(id, nombre, telefono);
         
         System.out.println("El cliente " + nombre + " con ID " + id + " y telefono " + telefono + " ha sido creado correctamente");
@@ -95,9 +94,9 @@ public class Taller {
         String opcion;
         int id=0;
         String nombre="";
-        String producto="";
-        ArrayList<String> listaproductos= new ArrayList<>();
-        String query="INSERT INTO proveedores (id, nombre, productos) VALUES ("+id+","+nombre+","+valortotal+")";
+        int telefono=0;
+       
+        String query="INSERT INTO proveedores (id, nombre, productos) VALUES ("+id+","+nombre+","+telefono+")";
         System.out.println("ID:");
         
         id=sc.nextInt();
@@ -106,29 +105,12 @@ public class Taller {
     
         nombre= sc.next();
     
-        do{
-            System.out.println("Producto:");
-            producto= sc.next();
-            listaproductos.add(producto);
-            System.out.println("Quieres añadir mas productos?");
-            opcion=sc.next();
-            opcionminus= opcion.toLowerCase();
-    
-        }while(opcionminus.equals("si"));
-
-        for(int i=0; i<listaproductos.size(); i++){
-
-            String valor= listaproductos.get(i);                    //For que concadena el arraylist en un string
-             valortotal= valortotal+"-"+valor;
-
-
-        }
 
         try(PreparedStatement stmt= conexion.prepareStatement(query)){ 
 
             stmt.setInt(1, id);
             stmt.setString(2, nombre);
-            stmt.setString(3, valortotal);
+            stmt.setInt(3, telefono);
 
             System.out.println("El proveedor " + nombre + " con ID " + id + " ha sido creado correctamente");
 
@@ -138,8 +120,8 @@ public class Taller {
 
         
         
-        Proveedor proveedor= new Proveedor(id, nombre);
-        listaProveedores.put(proveedor, listaproductos);
+        Proveedor proveedor= new Proveedor(id, nombre, telefono);
+       
     }
     
     public void crearEmpleado(){

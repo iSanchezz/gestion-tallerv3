@@ -8,7 +8,7 @@ public class ConexionDB {
      // URL de conexión a la base de datos MySQL
  private static final String URL = "jdbc:mysql://127.0.0.1:3306/taller";
  
- private static final String USUARIO = "Jorge"; // Nombre de usuario de 
+ private static final String USUARIO = "trasgosoy"; // Nombre de usuario de 
 //MySQL
  private static final String CONTRASENA = "debian"; // 
 //Contraseña del usuario de MySQL

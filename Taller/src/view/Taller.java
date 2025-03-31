@@ -9,7 +9,7 @@ import model.Vehiculo;
 public class Taller {
     Scanner sc = new Scanner(System.in);
 
-    public void crearCliente() {
+    public Cliente crearCliente() {
         String id = "";
         String nombre = "";
         int telefono = 0;
@@ -27,10 +27,10 @@ public class Taller {
                 System.out.println("Telefono: ");
                 telefono = sc.nextInt();
     
-                Cliente cliente = new Cliente(id, nombre, telefono);
+                
                 System.out.println("El cliente " +  nombre + " con ID " + id + " y telefono " + telefono + " se ha creado correctamente");
                 exito = true;
-                
+                return   new Cliente(id, nombre, telefono);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
                 System.out.println("Quieres volver a intentarlo?");
@@ -39,10 +39,13 @@ public class Taller {
                 if (respuesta.equals("si")) {
                 } else {
                     exito = true;
+
                 }
+                return null;
             }
         } while (exito);
     }
+        
 
     public void crearEmpleado() {
         String id = "";

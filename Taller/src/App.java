@@ -3,7 +3,10 @@ import dao.ConexionDB;
 import dao.InsertarDB;
 import java.sql.Connection;
 import java.util.*;
+
+import view.*;
 import view.Taller;
+
 
 
 public class App {
@@ -29,6 +32,13 @@ public class App {
 
 
     
+
+        
+        ClienteMenu cm = new ClienteMenu();
+        EmpleadoMenu em = new EmpleadoMenu();
+        ProductoMenu prodm = new ProductoMenu();
+        ProveedorMenu provm = new ProveedorMenu();
+        VehiculoMenu vm = new VehiculoMenu();
         ClienteDB clienteDB= new ClienteDB();   
         Taller taller = new Taller();
         boolean continuar = false;
@@ -39,9 +49,20 @@ public class App {
             System.out.println("2. Empleados");
             System.out.println("3. Proveedores");
             System.out.println("4. Inventario");
+            System.out.println("5. Vehiculo");
+            System.out.println("6. Salir");
     
             opcion = sc.nextInt();
             switch (opcion) {
+
+                case 1 -> cm.menu();
+                case 2 -> em.menu();   
+                case 3 -> prodm.menu();
+                case 4 -> provm.menu(); 
+                case 5 -> vm.menu();
+                case 6 -> continuar = true;
+                  
+            }
                 case 1 -> { 
                     System.out.println("Qué quieres hacer?");
                     System.out.println("1. Crear cliente");
@@ -64,8 +85,9 @@ public class App {
                 case 3 -> taller.crearProveedor();
                 //case 4 -> taller.crearInventario(); 
             }
+
         } while (!continuar);
+    } 
      
-    }
-   
 }
+

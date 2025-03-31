@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Scanner;
-import model.Cliente;
 import model.Empleado;
 import model.Producto;
 import model.Proveedor;
@@ -10,6 +9,7 @@ import model.Vehiculo;
 public class Taller {
     Scanner sc = new Scanner(System.in);
 
+ 
     public Cliente crearCliente() {
         String id = "";
         String nombre = "";

@@ -1,15 +1,15 @@
 package model;
 
 public class Vehiculo {
+    String id;
     String marca;
     String modelo;
-    String matricula;
     String estado;
 
-    public Vehiculo(String marca, String modelo, String matricula, String estado) {
+    public Vehiculo(String marca, String modelo, String id, String estado) {
         this.marca = marca;
         this.modelo = modelo;
-        this.matricula = matricula;
+        this.id = id;
         this.estado = estado;
     }
 
@@ -18,7 +18,7 @@ public class Vehiculo {
 
     public String getModelo(){return this.modelo;}
 
-    public String getMatricula(){return this.matricula;}
+    public String getId(){return this.id;}
 
     public String getEstado(){return this.estado;}
 

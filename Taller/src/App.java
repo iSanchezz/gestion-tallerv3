@@ -1,7 +1,6 @@
 import dao.ConexionDB;
 import java.sql.Connection;
 import java.util.*;
-import model.Proveedor;
 import view.*;
 public class App {
 
@@ -23,7 +22,11 @@ public class App {
 
     
         
-        Taller taller = new Taller();
+        ClienteMenu cm = new ClienteMenu();
+        EmpleadoMenu em = new EmpleadoMenu();
+        ProductoMenu prodm = new ProductoMenu();
+        ProveedorMenu provm = new ProveedorMenu();
+        VehiculoMenu vm = new VehiculoMenu();
         boolean continuar = false;
 
         do { 
@@ -37,11 +40,11 @@ public class App {
     
             opcion = sc.nextInt();
             switch (opcion) {
-                case 1 -> ClienteMenu.menu();
-                case 2 -> EmpleadoMenu.menu();   
-                case 3 -> ProveedorMenu.menu();
-                case 4 -> ProductoMenu.menu(); 
-                case 5 -> VehiculoMenu.menu();
+                case 1 -> cm.menu();
+                case 2 -> em.menu();   
+                case 3 -> prodm.menu();
+                case 4 -> provm.menu(); 
+                case 5 -> vm.menu();
                 case 6 -> continuar = true;
                   
             }

@@ -1,20 +1,21 @@
 package dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-public class Cliente {
 
+public class ClienteDB {
 
-    public void insertarCliente(model.Cliente cliente ){
-        Connection conexion= dao.ConexionDB.conectar();
+    public void insertarCliente(model.Cliente cliente) {
+        Connection conexion = dao.ConexionDB.conectar();
 
         String id = cliente.getId();
         String nombre = cliente.getNombre();
         int telefono = cliente.getTelefono();
 
-        String query="INSERT INTO clientes (id, nombre, telefono) VALUES (?,?,?)";
+        String query = "INSERT INTO clientes (id, nombre, telefono) VALUES (?,?,?)";
 
-        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, id);
             stmt.setString(2, nombre);
@@ -22,14 +23,12 @@ public class Cliente {
 
             System.out.println("los datos se han introducido con exito");
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
 
             System.out.println("error al introducir datos");
 
         }
 
-
     }
 
-    
 }

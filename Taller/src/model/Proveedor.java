@@ -16,6 +16,8 @@ public class Proveedor {
     public int getId(){return this.id;}
     
     public String getNombre(){return this.nombre;}
+
+    public int getTelefono(){return this.telefono;}
     
     public void setId(){this.id=id;}
     

@@ -15,4 +15,17 @@ public Producto(int id, String nombre, double precio){
 
 }
 
+public int getId(){
+
+    return this.id;
+}
+public String getNombre(){
+
+    return this.nombre;
+}
+public double getPrecio(){
+
+    return this.precio;
+}
+
 }

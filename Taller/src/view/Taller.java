@@ -9,7 +9,44 @@ import model.Vehiculo;
 public class Taller {
     Scanner sc = new Scanner(System.in);
 
+ 
+    public Cliente crearCliente() {
+        String id = "";
+        String nombre = "";
+        int telefono = 0;
+        boolean exito = false;
+        String respuesta = "";
+
+        do {
+            try {
+                System.out.println("ID: ");
+                id = sc.next();
+        
+                System.out.println("Nombre: ");
+                nombre = sc.next();
+        
+                System.out.println("Telefono: ");
+                telefono = sc.nextInt();
     
+                
+                System.out.println("El cliente " +  nombre + " con ID " + id + " y telefono " + telefono + " se ha creado correctamente");
+                exito = true;
+                return   new Cliente(id, nombre, telefono);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("Quieres volver a intentarlo?");
+                respuesta = sc.next();
+                respuesta = respuesta.toLowerCase();
+                if (respuesta.equals("si")) {
+                } else {
+                    exito = true;
+
+                }
+                return null;
+            }
+        } while (exito);
+    }
+        
 
     public void crearEmpleado() {
         String id = "";

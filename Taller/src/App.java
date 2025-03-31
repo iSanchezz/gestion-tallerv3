@@ -1,8 +1,16 @@
+import dao.ClienteDB;
 import dao.ConexionDB;
+import dao.InsertarDB;
 import java.sql.Connection;
 import java.util.*;
 import view.Taller;
+
+
 public class App {
+
+    InsertarDB insertar= new InsertarDB();
+    Taller taller = new Taller();
+
 
     public static void main(String[] args) {
 
@@ -21,7 +29,7 @@ public class App {
 
 
     
-        
+        ClienteDB clienteDB= new ClienteDB();   
         Taller taller = new Taller();
         boolean continuar = false;
 
@@ -42,13 +50,17 @@ public class App {
                     
                     opcion = sc.nextInt();
                         switch (opcion) {
-                            case 1 -> taller.crearCliente();
+                            case 1 -> 
+                                   
+                                       
                             //case 2 -> taller.modificarCliente();
                             //case 3 -> taller.borrarCliente();
                         }
                   
             }
                 case 2 -> taller.crearEmpleado();
+                            
+                            
                 case 3 -> taller.crearProveedor();
                 //case 4 -> taller.crearInventario(); 
             }

@@ -8,7 +8,7 @@ public class InsertarDB {
 
 
 
-    public void insertarCliente(model.Cliente cliente ){
+   /*  public void insertarCliente(model.Cliente cliente ){
         Connection conexion= dao.ConexionDB.conectar();
 
         String id = cliente.getId();
@@ -142,7 +142,7 @@ public class InsertarDB {
         
                 }
 
-            }
+            }*/
 }
 
 

@@ -38,7 +38,7 @@ public class InsertarDB {
     public void insertarEmpleado(model.Empleado empleado){
         Connection conexion= dao.ConexionDB.conectar();
 
-            int id= empleado.getId();
+            String id= empleado.getId();
             String nombre= empleado.getNombre();
             String puesto=empleado.getPuesto();
             double salario=empleado.getSalario();
@@ -47,7 +47,7 @@ public class InsertarDB {
 
             try(PreparedStatement stmt= conexion.prepareStatement(query)){
 
-                stmt.setInt(1, id);
+                stmt.setString(1, id);
                 stmt.setString(2, nombre);
                 stmt.setString(3, puesto);
                 stmt.setDouble(4, salario);

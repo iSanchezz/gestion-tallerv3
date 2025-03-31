@@ -1,18 +1,18 @@
 package model;
 
 public class Empleado {
-    int id;
+    String id;
     String nombre;
     String puesto;
     double salario;
 
-    public Empleado(int id, String nombre, String puesto, double salario) {
+    public Empleado(String id, String nombre, String puesto, double salario) {
         this.id = id;
         this.puesto = puesto;
         this.salario = salario;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

@@ -13,7 +13,7 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getId() {
+    public  String getId() {
         return this.id;
     }
 

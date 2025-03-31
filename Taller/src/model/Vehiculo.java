@@ -20,4 +20,6 @@ public class Vehiculo {
 
     public String getMatricula(){return this.matricula;}
 
+    public String getEstado(){return this.estado;}
+
 }

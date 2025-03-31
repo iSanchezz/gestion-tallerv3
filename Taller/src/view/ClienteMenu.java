@@ -62,11 +62,11 @@ public class ClienteMenu {
     }
 
     public void modificarCliente() {
-        int id;
+        String id;
         int opcion;
 
         System.out.println("ID del cliente: ");
-        id = sc.nextInt();
+        id = sc.next();
 
         String nuevoNombre;
         int nuevoTelefono;

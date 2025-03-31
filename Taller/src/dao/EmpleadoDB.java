@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-public class Empleado {
+public class EmpleadoDB {
     
 
     public void insertarEmpleado(model.Empleado empleado){
@@ -29,7 +29,59 @@ public class Empleado {
                 System.out.println("error al introducir datos");
 
                 }
+        }
 
+        public void modificarNombreEmpleado(int id, String nuevonombre){
+            Connection conexion= dao.ConexionDB.conectar();
+
+            String query="UPDATE empleados SET nombre = ? WHERE id="+id;
+
+            try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+                stmt.setString(1, nuevonombre);
+
+                System.out.println("los datos se han actualizado con exito");
+
+
+            }catch(SQLException e){
+                System.out.println("error al actualizar datos");
+            }
+
+        }
+        public void modificarPuestoEmpleado(int id, String nuevopuesto){
+            Connection conexion= dao.ConexionDB.conectar();
+
+            String query="UPDATE empleados SET puesto = ? WHERE id="+id;
+
+            try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+                stmt.setString(1, nuevopuesto);
+
+                System.out.println("los datos se han actualizado con exito");
+
+
+            }catch(SQLException e){
+                System.out.println("error al actualizar datos");
+            }
+
+        }
+        public void modificarSalarioEmpleado(int id, Double nuevosalario){
+            Connection conexion= dao.ConexionDB.conectar();
+
+            String query="UPDATE empleados SET salario = ? WHERE id="+id;
+
+            try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+                stmt.setDouble(1, nuevosalario);
+
+                System.out.println("los datos se han actualizado con exito");
+
+
+            }catch(SQLException e){
+                System.out.println("error al actualizar datos");
+            }
 
         }
 }
+
+

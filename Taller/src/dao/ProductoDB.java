@@ -2,7 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-public class Producto {
+public class ProductoDB {
     
 
     public void insertaProducto(model.Producto producto){
@@ -29,4 +29,40 @@ public class Producto {
 
 
         }
+
+        public void modificarNombreProducto(int id, String nuevonombre){
+            Connection conexion= dao.ConexionDB.conectar();
+
+            String query="UPDATE productos SET nombre = ? WHERE id="+id;
+
+            try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+                stmt.setString(1, nuevonombre);
+
+                System.out.println("los datos se han actualizado con exito");
+
+
+            }catch(SQLException e){
+                System.out.println("error al actualizar datos");
+            }
+
+        }
+        public void modificarPrecioProducto(int id, Double nuevoprecio){
+            Connection conexion= dao.ConexionDB.conectar();
+
+            String query="UPDATE productos SET precio = ? WHERE id="+id;
+
+            try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+                stmt.setDouble(1, nuevoprecio);
+
+                System.out.println("los datos se han actualizado con exito");
+
+
+            }catch(SQLException e){
+                System.out.println("error al actualizar datos");
+            }
+
+        }
+
 }

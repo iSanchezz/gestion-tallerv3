@@ -3,6 +3,7 @@ package view;
 import java.util.Scanner;
 import model.Cliente;
 import model.Empleado;
+import model.Producto;
 import model.Proveedor;
 import model.Vehiculo;
 
@@ -133,6 +134,7 @@ public class Taller {
         boolean exito = false;
         String respuesta = "";
 
+
         do {
             try {
                 System.out.println("ID: ");
@@ -153,6 +155,43 @@ public class Taller {
                 System.out.println("¿Quieres volver a intentarlo?");
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
+                if (respuesta.equals("si")) {
+                } else {
+                    exito = true;
+                }
+            }
+        } while (!exito);
+
+    }
+
+    public void crearProducto(){
+        int id;
+        String nombre;
+        double precio;
+        boolean exito = false;
+        String respuesta;
+
+        do {
+            try {
+                System.out.println("ID: ");
+                id = sc.nextInt();
+        
+                System.out.println("Nombre: ");
+                nombre = sc.next();
+        
+                System.out.println("Precio: ");
+                precio = sc.nextDouble();
+    
+                Producto producto = new Producto(id, nombre, precio);
+                System.out.println("El proveedor " + nombre + " con ID " + id + " y teléfono " + precio + " se ha creado correctamente");
+                exito = true;
+                
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("¿Quieres volver a intentarlo?");
+                respuesta = sc.next();
+                respuesta = respuesta.toLowerCase();
+
                 if (respuesta.equals("si")) {
                 } else {
                     exito = true;

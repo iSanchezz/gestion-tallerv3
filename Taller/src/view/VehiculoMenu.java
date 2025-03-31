@@ -18,21 +18,22 @@ public class VehiculoMenu {
 
         opcion = sc.nextInt();
         switch (opcion) {
-            case 1 -> crearVehiculo();
+            case 1 -> vehiculoDB.insertarVehiculo(crearVehiculo());
             // case 2 -> modificarVehiculo();
             // case 3 -> borrarVehiculo();
         }
     }
 
-    public void crearVehiculo() {
+    public Vehiculo crearVehiculo() {
         String marca = "";
         String modelo = "";
         String matricula = "";
         String estado = "";
-        boolean exito = false;
+        boolean exito ;
         String respuesta = "";
 
         do {
+            exito=false;
             try {
                 System.out.println("Marca: ");
                 marca = sc.next();
@@ -57,11 +58,16 @@ public class VehiculoMenu {
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
                 if (respuesta.equals("si")) {
+                    exito=true;
                 } else {
-                    exito = true;
+                    return null;
                 }
             }
-        } while (!exito);
+        } while (exito);
+
+        System.out.println("El vehículo " + marca + " " + modelo + " con matrícula " + matricula + " y estado "
+                        + estado + " se ha creado correctamente");
+                return new Vehiculo(marca, modelo, respuesta, estado);
     }
 
     public void modificarVehiculo() {

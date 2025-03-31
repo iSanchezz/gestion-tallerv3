@@ -17,22 +17,23 @@ public class EmpleadoMenu {
 
         opcion = sc.nextInt();
         switch (opcion) {
-            case 1 -> crearEmpleado();
+            case 1 -> empleadoDB.insertarEmpleado(crearEmpleado());
             case 2 -> modificarEmpleado();
             // case 3 -> borrarEmpleado();
             // case 4 -> Salir no implementado
         }
     }
 
-    public void crearEmpleado() {
+    public Empleado crearEmpleado() {
         String id = "";
         String nombre = "";
         String puesto = "";
         double salario = 0;
-        boolean exito = false;
+        boolean exito;
         String respuesta;
 
         do {
+                exito=false;
             try {
                 System.out.println("ID: ");
                 id = sc.next();
@@ -46,8 +47,7 @@ public class EmpleadoMenu {
                 System.out.println("Salario: ");
                 salario = sc.nextDouble();
 
-                Empleado empleado = new Empleado(id, nombre, puesto, salario);
-
+               
             } catch (Exception e) {
 
                 System.out.println("Error: " + e.getMessage());
@@ -55,14 +55,14 @@ public class EmpleadoMenu {
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
                 if (respuesta.equals("si")) {
+                    exito=true;
                 } else {
-                    exito = true;
+                    return null;
                 }
             }
-            System.out.println("El empleado " + nombre + " con ID " + id + ", puesto " + puesto + " y salario "
-                    + salario + " se ha creado correctamente");
-
         } while (exito);
+        System.out.println("El empleado " + nombre + " con ID " + id + ", puesto " + puesto + " y salario "+ salario + " se ha creado correctamente");
+        return new Empleado(id, nombre, puesto, salario);
 
     }
 

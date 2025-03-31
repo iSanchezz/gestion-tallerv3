@@ -1,6 +1,6 @@
 package view;
 
-import dao.ClienteDB;
+import dao.*;
 import java.util.*;
 import model.Cliente;
 
@@ -17,7 +17,7 @@ public class ClienteMenu {
 
         opcion = sc.nextInt();
         switch (opcion) {
-            case 1 -> crearCliente();
+            case 1 -> clienteDB.insertarCliente(crearCliente());
             case 2 -> modificarCliente();
             // case 3 -> borrarCliente();
             // case 4 -> Salir no implementado
@@ -25,14 +25,15 @@ public class ClienteMenu {
 
     }
 
-    public void crearCliente() {
+    public Cliente crearCliente() {
         String id = "";
         String nombre = "";
         int telefono = 0;
-        boolean exito = false;
+        boolean exito;
         String respuesta = "";
 
         do {
+            exito =false;
             try {
                 System.out.println("ID: ");
                 id = sc.next();
@@ -43,10 +44,9 @@ public class ClienteMenu {
                 System.out.println("Telefono: ");
                 telefono = sc.nextInt();
 
-                Cliente cliente = new Cliente(id, nombre, telefono);
-                System.out.println("El cliente " + nombre + " con ID " + id + " y telefono " + telefono
-                        + " se ha creado correctamente");
-                exito = true;
+                
+               
+              
 
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
@@ -54,11 +54,16 @@ public class ClienteMenu {
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
                 if (respuesta.equals("si")) {
+                    exito=true;
                 } else {
-                    exito = true;
+                    return null;
                 }
             }
         } while (exito);
+        System.out.println("El cliente " + nombre + " con ID " + id + " y telefono " + telefono+ " se ha creado correctamente");
+        return new Cliente(id, nombre, telefono);
+      
+              
     }
 
     public void modificarCliente() {

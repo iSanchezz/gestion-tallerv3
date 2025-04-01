@@ -70,7 +70,20 @@ public class ClienteDB {
             System.out.println("error al actualizar datos");
         }
 
+    }
 
+    public void borrarCliente(String id){
 
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query= "DELETE * FROM clientes WHERE id="+id;
+
+        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+            stmt.executeUpdate();
+            System.out.println("los datos se han actualizado con exito");
+        }catch(SQLException e){
+            System.out.println("error al actualizar datos");
+
+        }
     }
 }   

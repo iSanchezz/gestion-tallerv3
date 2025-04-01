@@ -1,11 +1,11 @@
 package model;
 
 public class Proveedor {
-    int id;
+    String id;
     String nombre;
     int telefono;
     
-    public Proveedor(int id,String nombre, int telefono){
+    public Proveedor(String id,String nombre, int telefono){
     
     this.id=id;
     this.nombre=nombre;
@@ -13,7 +13,7 @@ public class Proveedor {
     
         }
     
-    public int getId(){return this.id;}
+    public String getId(){return this.id;}
     
     public String getNombre(){return this.nombre;}
 

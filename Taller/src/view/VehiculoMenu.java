@@ -100,4 +100,26 @@ public class VehiculoMenu {
 
     }
 
+    public void borrarVehiculo() {
+        String id;
+        String respuesta;
+
+        System.out.println("ID del vehiculo: ");
+        id = sc.next();
+
+        System.out.println("El vehiculo " + vehiculoDB.vehiculoByID(id) + " se borrará.");
+        System.out.println("Quieres continuar?");
+        respuesta = sc.next();
+        respuesta = respuesta.toLowerCase();
+
+        if ("si".equals(respuesta)) {
+            vehiculoDB.borrarVehiculo(id);
+            System.out.println("El vehiculo ha sido eliminado con éxito");
+
+        } else { 
+            System.out.println("Se ha cancelado la operación");
+        }
+        menu();
+    }
+
 }

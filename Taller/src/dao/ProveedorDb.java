@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ProveedorDb {
+public class ProveedorDB {
 
     public void insertarProveedor(model.Proveedor proveedor) {
         Connection conexion = dao.ConexionDB.conectar();

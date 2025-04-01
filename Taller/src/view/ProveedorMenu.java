@@ -1,12 +1,12 @@
 package view;
 
-import dao.ProveedorDb;
+import dao.ProveedorDB;
 import java.util.Scanner;
 import model.Proveedor;
 
 public class ProveedorMenu {
     Scanner sc = new Scanner(System.in);
-    ProveedorDb proveedorDb = new ProveedorDb();
+    ProveedorDB proveedorDB = new ProveedorDB();
 
     public void menu() {
         int opcion;
@@ -17,7 +17,7 @@ public class ProveedorMenu {
 
         opcion = sc.nextInt();
         switch (opcion) {
-            case 1 -> proveedorDb.insertarProveedor(crearProveedor());
+            case 1 -> proveedorDB.insertarProveedor(crearProveedor());
             case 2 -> modificarProveedor();
             // case 3 -> borrarProveedor();
         }
@@ -82,13 +82,13 @@ public class ProveedorMenu {
             case 1 -> {
                 System.out.println("Nuevo nombre: ");
                 nuevoNombre = sc.next();
-                proveedorDb.modificarNombreProveedor(id, nuevoNombre);
+                proveedorDB.modificarNombreProveedor(id, nuevoNombre);
             }
 
             case 2 -> {
                 System.out.println("Nuevo telefono: ");
                 nuevoTelefono = sc.nextInt();
-                proveedorDb.modificarTelefonoProveedor(id, nuevoTelefono); // Error porque telefono aqui es int y en el
+                proveedorDB.modificarTelefonoProveedor(id, nuevoTelefono); // Error porque telefono aqui es int y en el
                                                                            // DAO es String
             }
 
@@ -98,8 +98,8 @@ public class ProveedorMenu {
 
                 System.out.println("Nuevo telefono:");
                 nuevoTelefono = sc.nextInt();
-                proveedorDb.modificarNombreProveedor(id, nuevoNombre);
-                proveedorDb.modificarTelefonoProveedor(id, nuevoTelefono); // Mismo error que en el caso 2
+                proveedorDB.modificarNombreProveedor(id, nuevoNombre);
+                proveedorDB.modificarTelefonoProveedor(id, nuevoTelefono); // Mismo error que en el caso 2
             }
 
             case 4 -> menu();
@@ -107,6 +107,28 @@ public class ProveedorMenu {
             default -> System.out.println("Opcion no valida");
         }
 
+    }
+
+    public void borrarProveedor() {
+        String id;
+        String respuesta;
+
+        System.out.println("ID del proveedor: ");
+        id = sc.next();
+
+        System.out.println("El proveedor " + proveedorDB.proveedorByID(id) + " se borrará.");
+        System.out.println("Quieres continuar?");
+        respuesta = sc.next();
+        respuesta = respuesta.toLowerCase();
+
+        if ("si".equals(respuesta)) {
+            proveedorDB.borrarProveedor(id);
+            System.out.println("El proveedor ha sido eliminado con éxito");
+
+        } else { 
+            System.out.println("Se ha cancelado la operación");
+        }
+        menu();
     }
 
 }

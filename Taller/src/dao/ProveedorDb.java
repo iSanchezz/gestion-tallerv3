@@ -9,7 +9,7 @@ public class ProveedorDb {
     public void insertarProveedor(model.Proveedor proveedor) {
         Connection conexion = dao.ConexionDB.conectar();
 
-        int id = proveedor.getId();
+        String id = proveedor.getId();
         String nombre = proveedor.getNombre();
         int telefono = proveedor.getTelefono();
 
@@ -17,7 +17,7 @@ public class ProveedorDb {
 
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
-            stmt.setInt(1, id);
+            stmt.setString(1, id);
             stmt.setString(2, nombre);
             stmt.setInt(3, telefono);
 
@@ -31,7 +31,7 @@ public class ProveedorDb {
 
     }
 
-    public void modificarNombreProveedor(int id, String nuevonombre) {
+    public void modificarNombreProveedor(String id, String nuevonombre) {
         Connection conexion = dao.ConexionDB.conectar();
 
         String query = "UPDATE proveedores SET nombre = ? WHERE id=" + id;
@@ -48,7 +48,7 @@ public class ProveedorDb {
 
     }
 
-    public void modificarTelefonoProveedor(int id, int nuevotelefono) {
+    public void modificarTelefonoProveedor(String id, int nuevotelefono) {
         Connection conexion = dao.ConexionDB.conectar();
 
         String query = "UPDATE proveedores SET telefono = ? WHERE id=" + id;
@@ -62,6 +62,20 @@ public class ProveedorDb {
         } catch (SQLException e) {
 
             System.out.println("error al alcuatilizar datos");
+
+        }
+    }
+    public void borrarProveedor(String id){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query= "DELETE * FROM proveedores WHERE id="+id;
+
+        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+            stmt.executeUpdate();
+            System.out.println("los datos se han actualizado con exito");
+        }catch(SQLException e){
+            System.out.println("error al actualizar datos");
 
         }
     }

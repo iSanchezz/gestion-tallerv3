@@ -27,12 +27,12 @@ public class ProductoMenu {
     }
 
     public void crearProducto() {
-        int id;
+        String id;
         String nombre;
         double precio;
 
         System.out.println("ID: ");
-        id = sc.nextInt();
+        id = sc.next();
 
         System.out.println("Nombre: ");
         nombre = sc.next();
@@ -46,10 +46,10 @@ public class ProductoMenu {
     }
 
     public void modificarProducto() {
-        int id;
+        String id;
         int opcion;
         System.out.println("ID del producto: ");
-        id = sc.nextInt();
+        id = sc.next();
         String nuevoNombre;
         double nuevoPrecio;
 

@@ -8,7 +8,7 @@ public class ProductoDB {
     public void insertaProducto(model.Producto producto){
         Connection conexion= dao.ConexionDB.conectar();
 
-            int id= producto.getId();
+            String id= producto.getId();
             String nombre= producto.getNombre();
             double precio=producto.getPrecio();
 
@@ -16,7 +16,7 @@ public class ProductoDB {
 
             try(PreparedStatement stmt= conexion.prepareStatement(query)){
 
-                stmt.setInt(1, id);
+                stmt.setString(1, id);
                 stmt.setString(2, nombre);                  
                 stmt.setDouble(4, precio);
     
@@ -30,7 +30,7 @@ public class ProductoDB {
 
         }
 
-        public void modificarNombreProducto(int id, String nuevonombre){
+        public void modificarNombreProducto(String id, String nuevonombre){
             Connection conexion= dao.ConexionDB.conectar();
 
             String query="UPDATE productos SET nombre = ? WHERE id="+id;
@@ -47,7 +47,7 @@ public class ProductoDB {
             }
 
         }
-        public void modificarPrecioProducto(int id, Double nuevoprecio){
+        public void modificarPrecioProducto(String id, Double nuevoprecio){
             Connection conexion= dao.ConexionDB.conectar();
 
             String query="UPDATE productos SET precio = ? WHERE id="+id;
@@ -63,6 +63,20 @@ public class ProductoDB {
                 System.out.println("error al actualizar datos");
             }
 
+        }
+        public void borrarProducto(String id){
+
+            Connection conexion= dao.ConexionDB.conectar();
+    
+            String query= "DELETE * FROM productos WHERE id="+id;
+    
+            try(PreparedStatement stmt= conexion.prepareStatement(query)){
+                stmt.executeUpdate();
+                System.out.println("los datos se han actualizado con exito");
+            }catch(SQLException e){
+                System.out.println("error al actualizar datos");
+    
+            }
         }
 
 }

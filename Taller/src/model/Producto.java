@@ -2,11 +2,11 @@ package model;
 
 public class Producto {
 
-    int id;
+    String id;
     String nombre;
     double precio;
 
-public Producto(int id, String nombre, double precio){
+public Producto(String id, String nombre, double precio){
 
     this.id=id;
     this.nombre=nombre;
@@ -15,7 +15,7 @@ public Producto(int id, String nombre, double precio){
 
     }
 
-public int getId(){
+public String getId(){
     return this.id;
 }
 public String getNombre(){

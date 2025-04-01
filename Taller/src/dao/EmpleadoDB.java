@@ -31,7 +31,7 @@ public class EmpleadoDB {
                 }
         }
 
-        public void modificarNombreEmpleado(int id, String nuevonombre){
+        public void modificarNombreEmpleado(String id, String nuevonombre){
             Connection conexion= dao.ConexionDB.conectar();
 
             String query="UPDATE empleados SET nombre = ? WHERE id="+id;
@@ -48,7 +48,7 @@ public class EmpleadoDB {
             }
 
         }
-        public void modificarPuestoEmpleado(int id, String nuevopuesto){
+        public void modificarPuestoEmpleado(String id, String nuevopuesto){
             Connection conexion= dao.ConexionDB.conectar();
 
             String query="UPDATE empleados SET puesto = ? WHERE id="+id;
@@ -65,7 +65,7 @@ public class EmpleadoDB {
             }
 
         }
-        public void modificarSalarioEmpleado(int id, Double nuevosalario){
+        public void modificarSalarioEmpleado(String id, Double nuevosalario){
             Connection conexion= dao.ConexionDB.conectar();
 
             String query="UPDATE empleados SET salario = ? WHERE id="+id;
@@ -80,7 +80,20 @@ public class EmpleadoDB {
             }catch(SQLException e){
                 System.out.println("error al actualizar datos");
             }
+        }
+        public void borrarEmpleado(String id){
 
+            Connection conexion= dao.ConexionDB.conectar();
+    
+            String query= "DELETE * FROM empleados WHERE id="+id;
+    
+            try(PreparedStatement stmt= conexion.prepareStatement(query)){
+                stmt.executeUpdate();
+                System.out.println("los datos se han actualizado con exito");
+            }catch(SQLException e){
+                System.out.println("error al actualizar datos");
+    
+            }
         }
 }
 

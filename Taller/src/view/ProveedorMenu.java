@@ -24,7 +24,7 @@ public class ProveedorMenu {
     }
 
     public Proveedor crearProveedor() {
-        int id = 0;
+        String id = "";
         String nombre = "";
         int telefono = 0;
         boolean exito;
@@ -34,7 +34,7 @@ public class ProveedorMenu {
             exito=false;
             try {
                 System.out.println("ID: ");
-                id = sc.nextInt();
+                id = sc.next();
 
                 System.out.println("Nombre: ");
                 nombre = sc.next();
@@ -62,11 +62,11 @@ public class ProveedorMenu {
     }
 
     public void modificarProveedor() {
-        int id;
+        String id;
         int opcion;
 
         System.out.println("ID del proveedor: ");
-        id = sc.nextInt();
+        id = sc.next();
 
         String nuevoNombre;
         int nuevoTelefono;

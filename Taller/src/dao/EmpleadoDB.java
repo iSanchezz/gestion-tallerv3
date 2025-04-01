@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 public class EmpleadoDB {
     
 
@@ -95,6 +97,50 @@ public class EmpleadoDB {
     
             }
         }
+        public void mostrarEmpleados(){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query="SELECT * FROM empleados";
+        try(Statement stmt = conexion.createStatement();
+        ResultSet rs=stmt.executeQuery(query)){
+            
+            while(rs.next()){
+                System.out.println("ID: "+ rs.getString("id"));
+                System.out.println("Nombre: "+ rs.getString("nombre"));
+                System.out.println("Puesto: "+ rs.getString("puesto"));
+                System.out.println("Salario: "+ rs.getDouble("salario"));
+                System.out.println("-------------------------");
+
+            }
+
+        }catch(SQLException e){
+            System.out.println("error al realizar la consulta"+ e.getMessage());
+
+        }
+    }
+    public void mostrarEmpleadosID(String id){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query="SELECT * FROM empleados WHERE id="+id;
+        try(Statement stmt = conexion.createStatement();
+        ResultSet rs=stmt.executeQuery(query)){
+            
+            while(rs.next()){
+                System.out.println("ID: "+ rs.getString("id"));
+                System.out.println("Nombre: "+ rs.getString("nombre"));
+                System.out.println("Puesto: "+ rs.getString("puesto"));
+                System.out.println("Salario: "+ rs.getDouble("salario"));
+                System.out.println("-------------------------");
+
+            }
+            
+        }catch(SQLException e){
+            System.out.println("error al realizar la consulta"+ e.getMessage());
+
+        }
+    }
 }
 
 

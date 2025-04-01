@@ -133,7 +133,10 @@ public class EmpleadoMenu {
         System.out.println("ID del empleado: ");
         id = sc.next();
 
-        System.out.println("El empleado " + empleadoDB.empleadoByID(id) + " se borrará.");
+        System.out.println("El empleado ");
+        empleadoDB.mostrarEmpleadosID(id);
+        System.out.println("se borrara ");
+
         System.out.println("Quieres continuar?");
         respuesta = sc.next();
         respuesta = respuesta.toLowerCase();

@@ -116,7 +116,9 @@ public class ProveedorMenu {
         System.out.println("ID del proveedor: ");
         id = sc.next();
 
-        System.out.println("El proveedor " + proveedorDB.proveedorByID(id) + " se borrará.");
+        System.out.println("El proveedor ");
+        proveedorDB.mostrarProveedoresID(id);
+        System.out.println(" se borrará.");
         System.out.println("Quieres continuar?");
         respuesta = sc.next();
         respuesta = respuesta.toLowerCase();

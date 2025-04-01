@@ -111,7 +111,9 @@ public class VehiculoMenu {
         System.out.println("ID del vehiculo: ");
         id = sc.next();
 
-        System.out.println("El vehiculo " + vehiculoDB.vehiculoByID(id) + " se borrará.");
+        System.out.println("El vehiculo "); 
+        vehiculoDB.mostrarVehiculosID(id);
+        System.out.println(" se borrará.");
         System.out.println("Quieres continuar?");
         respuesta = sc.next();
         respuesta = respuesta.toLowerCase();

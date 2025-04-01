@@ -121,7 +121,9 @@ public class ClienteMenu {
         System.out.println("ID del cliente: ");
         id = sc.next();
 
-        System.out.println("El cliente " + clienteDB.mostrarClientesID(id) + " se borrará.");
+        System.out.println("El cliente ");
+        clienteDB.mostrarClientesID(id);
+        System.out.println("se borrara"); 
         System.out.println("Quieres continuar?");
         respuesta = sc.next();
         respuesta = respuesta.toLowerCase();

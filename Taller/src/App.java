@@ -24,12 +24,12 @@ public class App {
             System.out.println("error al conectar");
         }
 
-        ClienteMenu cm = new ClienteMenu();
-        EmpleadoMenu em = new EmpleadoMenu();
-        ProductoMenu prodm = new ProductoMenu();
-        ProveedorMenu provm = new ProveedorMenu();
-        VehiculoMenu vm = new VehiculoMenu();
-        
+        ClienteMenu menuCliente = new ClienteMenu();
+        EmpleadoMenu menuEmpleado = new EmpleadoMenu();
+        ProductoMenu menuProducto = new ProductoMenu();
+        ProveedorMenu menuProveedor = new ProveedorMenu();
+        VehiculoMenu menuVehiculo = new VehiculoMenu();
+        CitaMenu menuCita = new CitaMenu();
        
         boolean continuar = false;
 

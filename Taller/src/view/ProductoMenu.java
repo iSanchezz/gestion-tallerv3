@@ -97,7 +97,9 @@ public class ProductoMenu {
         System.out.println("ID del producto: ");
         id = sc.next();
 
-        System.out.println("El producto " + productoDB.productoByID(id) + " se borrará.");
+        System.out.println("El producto ");
+        productoDB.mostrarProductosID(id);
+        System.out.println(" se borrará.");
         System.out.println("Quieres continuar?");
         respuesta = sc.next();
         respuesta = respuesta.toLowerCase();

@@ -20,7 +20,7 @@ public class ProductoMenu {
         switch (opcion) {
             case 1 -> crearProducto();
             case 2 -> modificarProducto();
-            // case 3 -> borrarProducto();
+            case 3 -> borrarProducto();
             // case 4 -> Salir no implementado
         }
 

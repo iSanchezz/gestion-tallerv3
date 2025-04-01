@@ -30,7 +30,7 @@ public class App {
         ProveedorMenu provm = new ProveedorMenu();
         VehiculoMenu vm = new VehiculoMenu();
         
-        
+       
         boolean continuar = false;
 
         do {
@@ -40,17 +40,18 @@ public class App {
             System.out.println("3. Proveedores");
             System.out.println("4. Inventario");
             System.out.println("5. Vehiculo");
-            System.out.println("6. Salir");
+            System.out.println("7. Salir");
 
             opcion = sc.nextInt();
             switch (opcion) {
 
-                case 1 -> cm.menu();
-                case 2 -> em.menu();
-                case 3 -> prodm.menu();
-                case 4 -> provm.menu();
-                case 5 -> vm.menu();
-                case 6 -> continuar = true;
+                case 1 -> menuCliente.menu();
+                case 2 -> menuEmpleado.menu();
+                case 3 -> menuProducto.menu();
+                case 4 -> menuProveedor.menu();
+                case 5 -> menuVehiculo.menu();
+                case 6 -> menuCita.menu();
+                case 7 -> continuar = true;
 
             }
 

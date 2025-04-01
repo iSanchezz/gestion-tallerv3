@@ -25,11 +25,12 @@ public class App {
             System.out.println("error al conectar");
         }
 
-        ClienteMenu cm = new ClienteMenu();
-        EmpleadoMenu em = new EmpleadoMenu();
-        ProductoMenu prodm = new ProductoMenu();
-        ProveedorMenu provm = new ProveedorMenu();
-        VehiculoMenu vm = new VehiculoMenu();
+        ClienteMenu menuCliente = new ClienteMenu();
+        EmpleadoMenu menuEmpleado = new EmpleadoMenu();
+        ProductoMenu menuProducto = new ProductoMenu();
+        ProveedorMenu menuProveedor = new ProveedorMenu();
+        VehiculoMenu menuVehiculo = new VehiculoMenu();
+        CitaMenu menuCita = new CitaMenu();
         ClienteDB clienteDB = new ClienteDB();
         Taller taller = new Taller();
         boolean continuar = false;
@@ -41,17 +42,18 @@ public class App {
             System.out.println("3. Proveedores");
             System.out.println("4. Inventario");
             System.out.println("5. Vehiculo");
-            System.out.println("6. Salir");
+            System.out.println("7. Salir");
 
             opcion = sc.nextInt();
             switch (opcion) {
 
-                case 1 -> cm.menu();
-                case 2 -> em.menu();
-                case 3 -> prodm.menu();
-                case 4 -> provm.menu();
-                case 5 -> vm.menu();
-                case 6 -> continuar = true;
+                case 1 -> menuCliente.menu();
+                case 2 -> menuEmpleado.menu();
+                case 3 -> menuProducto.menu();
+                case 4 -> menuProveedor.menu();
+                case 5 -> menuVehiculo.menu();
+                case 6 -> menuCita.menu();
+                case 7 -> continuar = true;
 
             }
 

@@ -2,7 +2,6 @@ package view;
 
 import dao.VehiculoDB;
 import java.util.Scanner;
-
 import model.Vehiculo;
 
 public class VehiculoMenu {
@@ -19,8 +18,8 @@ public class VehiculoMenu {
         opcion = sc.nextInt();
         switch (opcion) {
             case 1 -> vehiculoDB.insertarVehiculo(crearVehiculo());
-            // case 2 -> modificarVehiculo();
-            // case 3 -> borrarVehiculo();
+             case 2 -> modificarVehiculo();
+             case 3 -> borrarVehiculo();
         }
     }
 
@@ -31,6 +30,7 @@ public class VehiculoMenu {
         String estado = "";
         boolean exito ;
         String respuesta = "";
+        String dueño="";
 
         do {
             exito=false;
@@ -47,7 +47,11 @@ public class VehiculoMenu {
                 System.out.println("Estado: ");
                 estado = sc.next();
 
-                Vehiculo vehiculo = new Vehiculo(marca, modelo, matricula, estado);
+                System.out.println("ID del dueño del vehiculo: ");
+                dueño=sc.next();
+
+
+                Vehiculo vehiculo = new Vehiculo(marca, modelo, matricula, estado, dueño);
                 System.out.println("El vehículo " + marca + " " + modelo + " con matrícula " + matricula + " y estado "
                         + estado + " se ha creado correctamente");
                 exito = true;
@@ -67,7 +71,7 @@ public class VehiculoMenu {
 
         System.out.println("El vehículo " + marca + " " + modelo + " con matrícula " + matricula + " y estado "
                         + estado + " se ha creado correctamente");
-                return new Vehiculo(marca, modelo, respuesta, estado);
+                return new Vehiculo(marca, modelo, respuesta, estado, dueño);
     }
 
     public void modificarVehiculo() {

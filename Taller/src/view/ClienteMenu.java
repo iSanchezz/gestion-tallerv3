@@ -19,7 +19,7 @@ public class ClienteMenu {
         switch (opcion) {
             case 1 -> clienteDB.insertarCliente(crearCliente());
             case 2 -> modificarCliente();
-            // case 3 -> borrarCliente();
+            case 3 -> borrarCliente();
             // case 4 -> Salir no implementado
         }
 
@@ -121,7 +121,7 @@ public class ClienteMenu {
         System.out.println("ID del cliente: ");
         id = sc.next();
 
-        System.out.println("El cliente " + clienteDB.clienteByID(id) + " se borrará.");
+        System.out.println("El cliente " + clienteDB.mostrarClientesID(id) + " se borrará.");
         System.out.println("Quieres continuar?");
         respuesta = sc.next();
         respuesta = respuesta.toLowerCase();

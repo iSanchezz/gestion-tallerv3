@@ -1,14 +1,13 @@
-import dao.ClienteDB;
+
 import dao.ConexionDB;
-import dao.InsertarDB;
 import java.sql.Connection;
 import java.util.*;
 import view.*;
 
 public class App {
 
-    InsertarDB insertar = new InsertarDB();
-    Taller taller = new Taller();
+    
+   
 
     public static void main(String[] args) {
 
@@ -30,8 +29,8 @@ public class App {
         ProductoMenu prodm = new ProductoMenu();
         ProveedorMenu provm = new ProveedorMenu();
         VehiculoMenu vm = new VehiculoMenu();
-        ClienteDB clienteDB = new ClienteDB();
-        Taller taller = new Taller();
+        
+        
         boolean continuar = false;
 
         do {

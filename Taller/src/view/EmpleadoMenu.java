@@ -67,11 +67,11 @@ public class EmpleadoMenu {
     }
 
     public void modificarEmpleado() {
-        int id;
+        String id;
         int opcion;
 
         System.out.println("ID del empleado: ");
-        id = sc.nextInt();
+        id = sc.next();
 
         String nuevoNombre;
         String nuevoPuesto;

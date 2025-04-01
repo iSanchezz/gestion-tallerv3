@@ -17,20 +17,21 @@ public class ProveedorMenu {
 
         opcion = sc.nextInt();
         switch (opcion) {
-            case 1 -> crearProveedor();
+            case 1 -> proveedorDb.insertarProveedor(crearProveedor());
             case 2 -> modificarProveedor();
             // case 3 -> borrarProveedor();
         }
     }
 
-    public void crearProveedor() {
+    public Proveedor crearProveedor() {
         int id = 0;
         String nombre = "";
         int telefono = 0;
-        boolean exito = false;
+        boolean exito;
         String respuesta = "";
 
         do {
+            exito=false;
             try {
                 System.out.println("ID: ");
                 id = sc.nextInt();
@@ -41,22 +42,22 @@ public class ProveedorMenu {
                 System.out.println("Teléfono: ");
                 telefono = sc.nextInt();
 
-                Proveedor proveedor = new Proveedor(id, nombre, telefono);
-                System.out.println("El proveedor " + nombre + " con ID " + id + " y teléfono " + telefono
-                        + " se ha creado correctamente");
-                exito = true;
-
+               
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
                 System.out.println("¿Quieres volver a intentarlo?");
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
                 if (respuesta.equals("si")) {
+                    exito=true;
                 } else {
-                    exito = true;
+                  return null;
                 }
             }
-        } while (!exito);
+        } while (exito);
+        System.out.println("El proveedor " + nombre + " con ID " + id + " y teléfono " + telefono
+                        + " se ha creado correctamente");
+                return new Proveedor(id, nombre, telefono);
 
     }
 

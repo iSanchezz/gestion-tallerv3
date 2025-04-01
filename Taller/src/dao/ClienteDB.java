@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ClienteDB {
 
@@ -86,4 +88,46 @@ public class ClienteDB {
 
         }
     }
+    public void mostrarClientes(){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query="SELECT * FROM clientes";
+        try(Statement stmt = conexion.createStatement();
+        ResultSet rs=stmt.executeQuery(query)){
+            
+            while(rs.next()){
+                System.out.println("ID: "+ rs.getString("id"));
+                System.out.println("Nombre: "+ rs.getString("nombre"));
+                System.out.println("Telefono: "+ rs.getString("telefono"));
+                System.out.println("-------------------------");
+
+            }
+
+        }catch(SQLException e){
+            System.out.println("error al realizar la consulta"+ e.getMessage());
+
+        }
+    }
+        public void mostrarClientesID(String id){
+
+            Connection conexion= dao.ConexionDB.conectar();
+    
+            String query="SELECT * FROM clientes WHERE id="+id;
+            try(Statement stmt = conexion.createStatement();
+            ResultSet rs=stmt.executeQuery(query)){
+                
+                while(rs.next()){
+                    System.out.println("ID: "+ rs.getString("id"));
+                    System.out.println("Nombre: "+ rs.getString("nombre"));
+                    System.out.println("Telefono: "+ rs.getString("telefono"));
+                    System.out.println("-------------------------");
+    
+                }
+                
+            }catch(SQLException e){
+                System.out.println("error al realizar la consulta"+ e.getMessage());
+    
+            }
+        }
 }   

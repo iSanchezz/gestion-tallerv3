@@ -1,14 +1,13 @@
-import dao.ClienteDB;
+
 import dao.ConexionDB;
-import dao.InsertarDB;
 import java.sql.Connection;
 import java.util.*;
 import view.*;
 
 public class App {
 
-    InsertarDB insertar = new InsertarDB();
-    Taller taller = new Taller();
+    
+   
 
     public static void main(String[] args) {
 
@@ -25,14 +24,13 @@ public class App {
             System.out.println("error al conectar");
         }
 
-        ClienteMenu menuCliente = new ClienteMenu();
-        EmpleadoMenu menuEmpleado = new EmpleadoMenu();
-        ProductoMenu menuProducto = new ProductoMenu();
-        ProveedorMenu menuProveedor = new ProveedorMenu();
-        VehiculoMenu menuVehiculo = new VehiculoMenu();
-        CitaMenu menuCita = new CitaMenu();
-        ClienteDB clienteDB = new ClienteDB();
-        Taller taller = new Taller();
+        ClienteMenu cm = new ClienteMenu();
+        EmpleadoMenu em = new EmpleadoMenu();
+        ProductoMenu prodm = new ProductoMenu();
+        ProveedorMenu provm = new ProveedorMenu();
+        VehiculoMenu vm = new VehiculoMenu();
+        
+       
         boolean continuar = false;
 
         do {

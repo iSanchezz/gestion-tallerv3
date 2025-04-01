@@ -90,4 +90,26 @@ public class ProductoMenu {
 
     }
 
+    public void borrarProducto() {
+        String id;
+        String respuesta;
+
+        System.out.println("ID del producto: ");
+        id = sc.next();
+
+        System.out.println("El producto " + productoDB.productoByID(id) + " se borrará.");
+        System.out.println("Quieres continuar?");
+        respuesta = sc.next();
+        respuesta = respuesta.toLowerCase();
+
+        if ("si".equals(respuesta)) {
+            productoDB.borrarProducto(id);
+            System.out.println("El producto ha sido eliminado con éxito");
+
+        } else { 
+            System.out.println("Se ha cancelado la operación");
+        }
+        menu();
+    }
+
 }

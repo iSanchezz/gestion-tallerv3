@@ -126,4 +126,26 @@ public class EmpleadoMenu {
 
     }
 
+    public void borrarEmpleado() {
+        String id;
+        String respuesta;
+
+        System.out.println("ID del empleado: ");
+        id = sc.next();
+
+        System.out.println("El empleado " + empleadoDB.empleadoByID(id) + " se borrará.");
+        System.out.println("Quieres continuar?");
+        respuesta = sc.next();
+        respuesta = respuesta.toLowerCase();
+
+        if ("si".equals(respuesta)) {
+            empleadoDB.borrarEmpleado(id);
+            System.out.println("El empleado ha sido eliminado con éxito");
+
+        } else { 
+            System.out.println("Se ha cancelado la operación");
+        }
+        menu();
+    }
+
 }

@@ -113,4 +113,27 @@ public class ClienteMenu {
 
     }
 
+
+    public void borrarCliente() {
+        String id;
+        String respuesta;
+
+        System.out.println("ID del cliente: ");
+        id = sc.next();
+
+        System.out.println("El cliente " + clienteDB.clienteByID(id) + " se borrará.");
+        System.out.println("Quieres continuar?");
+        respuesta = sc.next();
+        respuesta = respuesta.toLowerCase();
+
+        if ("si".equals(respuesta)) {
+            clienteDB.borrarCliente(id);
+            System.out.println("El cliente ha sido eliminado con éxito");
+
+        } else { 
+            System.out.println("Se ha cancelado la operación");
+        }
+        menu();
+    }
+
 }

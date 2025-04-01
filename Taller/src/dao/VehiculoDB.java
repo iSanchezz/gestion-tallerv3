@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class VehiculoDB {
 
@@ -94,6 +96,49 @@ public class VehiculoDB {
             System.out.println("los datos se han actualizado con exito");
         }catch(SQLException e){
             System.out.println("error al actualizar datos");
+
+        }
+    }
+    public void mostrarVehiculos(){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query="SELECT * FROM vehiculos";
+        try(Statement stmt = conexion.createStatement();
+        ResultSet rs=stmt.executeQuery(query)){
+            
+            while(rs.next()){
+                System.out.println("Matricula: "+ rs.getString("matricula"));
+                System.out.println("Marca: "+ rs.getString("marca"));
+                System.out.println("Modelo: "+ rs.getString("modelo"));
+                System.out.println("Estado: "+ rs.getString("estado"));
+                System.out.println("-------------------------");
+
+            }
+
+        }catch(SQLException e){
+            System.out.println("error al realizar la consulta"+ e.getMessage());
+
+        }
+    }
+    public void mostrarVehiculosID(String id){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query="SELECT * FROM vehiculos WHERE id="+id;
+        try(Statement stmt = conexion.createStatement();
+        ResultSet rs=stmt.executeQuery(query)){
+            
+            while(rs.next()){
+                System.out.println("Matricula: "+ rs.getString("matricula"));
+                System.out.println("Marca: "+ rs.getString("marca"));
+                System.out.println("Modelo: "+ rs.getString("modelo"));
+                System.out.println("Estado: "+ rs.getString("estado"));
+                System.out.println("-------------------------");
+            }
+            
+        }catch(SQLException e){
+            System.out.println("error al realizar la consulta"+ e.getMessage());
 
         }
     }

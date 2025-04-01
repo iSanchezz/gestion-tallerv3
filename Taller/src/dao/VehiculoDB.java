@@ -85,6 +85,22 @@ public class VehiculoDB {
         }
 
     }
+    public void modificarDueñoVehiculo(String id, String nuevodueño) {
+        Connection conexion = dao.ConexionDB.conectar();
+
+        String query = "UPDATE vehiculos SET dueño = ? WHERE id=" + id;
+
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+
+            stmt.setString(1, nuevodueño);
+
+            System.out.println("los datos se han actualizado con exito");
+
+        } catch (SQLException e) {
+            System.out.println("error al actualizar datos");
+        }
+
+    }
     public void borrarVehiculo(String id){
 
         Connection conexion= dao.ConexionDB.conectar();

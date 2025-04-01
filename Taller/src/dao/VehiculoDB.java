@@ -33,7 +33,7 @@ public class VehiculoDB {
 
     }
 
-    public void modificarMarcaVehiculo(int id, String nuevamarca) {
+    public void modificarMarcaVehiculo(String id, String nuevamarca) {
         Connection conexion = dao.ConexionDB.conectar();
 
         String query = "UPDATE vehiculos SET marca = ? WHERE id=" + id;
@@ -50,7 +50,7 @@ public class VehiculoDB {
 
     }
 
-    public void modificarModeloVehiculo(int id, String nuevomodelo) {
+    public void modificarModeloVehiculo(String id, String nuevomodelo) {
         Connection conexion = dao.ConexionDB.conectar();
 
         String query = "UPDATE vehiculos SET modelo = ? WHERE id=" + id;
@@ -67,7 +67,7 @@ public class VehiculoDB {
 
     }
 
-    public void modificarEstadoVehiculo(int id, String nuevoestado) { // Cambiar ID de Vehiculo a String
+    public void modificarEstadoVehiculo(String id, String nuevoestado) { // Cambiar ID de Vehiculo a String
         Connection conexion = dao.ConexionDB.conectar();
 
         String query = "UPDATE vehiculos SET estado = ? WHERE id=" + id;

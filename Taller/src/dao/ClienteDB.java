@@ -31,4 +31,46 @@ public class ClienteDB {
 
     }
 
-}
+
+    public void modificarNombreCliente(String id, String nuevonombre){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query="UPDATE clientes SET nombre = ? WHERE id="+id;
+
+        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+            stmt.setString(1, nuevonombre);
+
+            System.out.println("los datos se han actualizado con exito");
+
+
+        }catch(SQLException e){
+            System.out.println("error al actualizar datos");
+        }
+
+
+
+    }
+
+    public void modificarTelefonoCliente(String id, int nuevotelefono){
+
+        Connection conexion= dao.ConexionDB.conectar();
+
+        String query="UPDATE clientes SET telefono = ? WHERE id="+id;
+
+        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+            stmt.setInt(1, nuevotelefono);
+
+            System.out.println("los datos se han actualizado con exito");
+
+
+        }catch(SQLException e){
+            System.out.println("error al actualizar datos");
+        }
+
+
+
+    }
+}   

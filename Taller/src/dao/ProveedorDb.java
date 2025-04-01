@@ -48,14 +48,14 @@ public class ProveedorDb {
 
     }
 
-    public void modificarTelefonoProveedor(int id, String nuevotelefono) {// Telefono deberia ser int¿?
+    public void modificarTelefonoProveedor(int id, int nuevotelefono) {
         Connection conexion = dao.ConexionDB.conectar();
 
         String query = "UPDATE proveedores SET telefono = ? WHERE id=" + id;
 
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
-            stmt.setString(1, nuevotelefono);
+            stmt.setInt(1, nuevotelefono);
 
             System.out.println("los datos se han actualizado con exito");
 

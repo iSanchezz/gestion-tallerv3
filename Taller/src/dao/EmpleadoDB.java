@@ -24,7 +24,8 @@ public class EmpleadoDB {
                 stmt.setString(2, nombre);
                 stmt.setString(3, puesto);
                 stmt.setDouble(4, salario);
-    
+                stmt.executeUpdate();
+
                 System.out.println("los datos se han introducido con exito");
 
             }catch(SQLException e){
@@ -41,6 +42,7 @@ public class EmpleadoDB {
             try(PreparedStatement stmt= conexion.prepareStatement(query)){
 
                 stmt.setString(1, nuevonombre);
+                stmt.executeUpdate();
 
                 System.out.println("los datos se han actualizado con exito");
 
@@ -58,6 +60,7 @@ public class EmpleadoDB {
             try(PreparedStatement stmt= conexion.prepareStatement(query)){
 
                 stmt.setString(1, nuevopuesto);
+                stmt.executeUpdate();
 
                 System.out.println("los datos se han actualizado con exito");
 
@@ -75,6 +78,7 @@ public class EmpleadoDB {
             try(PreparedStatement stmt= conexion.prepareStatement(query)){
 
                 stmt.setDouble(1, nuevosalario);
+                stmt.executeUpdate();
 
                 System.out.println("los datos se han actualizado con exito");
 

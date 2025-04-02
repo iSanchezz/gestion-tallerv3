@@ -24,6 +24,7 @@ public class VehiculoDB {
             stmt.setString(2, modelo);
             stmt.setString(3, matricula);
             stmt.setString(4, estado);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han introducido con exito");
 
@@ -43,6 +44,7 @@ public class VehiculoDB {
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, nuevamarca);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han actualizado con exito");
 
@@ -60,6 +62,7 @@ public class VehiculoDB {
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, nuevomodelo);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han actualizado con exito");
 
@@ -77,6 +80,7 @@ public class VehiculoDB {
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, nuevoestado);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han actualizado con exito");
 
@@ -93,6 +97,7 @@ public class VehiculoDB {
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, nuevodueño);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han actualizado con exito");
 

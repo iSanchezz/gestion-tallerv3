@@ -19,7 +19,7 @@ public class ProductoMenu {
 
         opcion = sc.nextInt();
         switch (opcion) {
-            case 1 -> crearProducto();
+            case 1 -> productoDB.insertaProducto(crearProducto());
             case 2 -> modificarProducto();
             case 3 -> borrarProducto();
             case 4 -> { 
@@ -35,7 +35,7 @@ public class ProductoMenu {
 
     }
 
-    public void crearProducto() {
+    public Producto crearProducto() {
         String id;
         String nombre;
         double precio;
@@ -49,9 +49,8 @@ public class ProductoMenu {
         System.out.println(" Precio: ");
         precio = sc.nextDouble();
 
-        Producto producto = new Producto(id, nombre, precio);
-        productoDB.insertaProducto(producto);
-
+        return new Producto(id, nombre, precio);
+      
     }
 
     public void modificarProducto() {

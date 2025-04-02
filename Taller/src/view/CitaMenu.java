@@ -74,7 +74,7 @@ public class CitaMenu {
                 Cita cita = new Cita(numeroCita, fecha, hora, idVehiculo);
                 exito=true;
                 System.out.println("Se ha creado una cita el " + fecha + " a las " + hora + " con el cliente " + dueño);
-                return new Cita(numeroCita, fecha, hora, idVehiculo);
+                return cita;
 
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());

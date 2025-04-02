@@ -5,7 +5,7 @@ import dao.VehiculoDB;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
-import javax.swing.table.TableCellRenderer;
+
 import model.Cita;
 
 public class CitaMenu {

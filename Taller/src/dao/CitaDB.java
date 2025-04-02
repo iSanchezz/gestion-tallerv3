@@ -114,7 +114,7 @@ public void mostrarCitasFuturo(){
     ResultSet rs=stmt.executeQuery(query)){
         
         while(rs.next()){
-            System.out.println("ID: "+ rs.getInt("numerocita"));
+            System.out.println("Numero: "+ rs.getInt("numerocita"));
             System.out.println("Nombre: "+ rs.getDate("fecha"));
             System.out.println("Telefono: "+ rs.getTime("hora"));
             System.out.println("Telefono: "+ rs.getString("idvehiculo"));
@@ -137,7 +137,7 @@ public void mostrarCitasPasado(){
     ResultSet rs=stmt.executeQuery(query)){
         
         while(rs.next()){
-            System.out.println("ID: "+ rs.getInt("numerocita"));
+            System.out.println("Numero: "+ rs.getInt("numerocita"));
             System.out.println("Nombre: "+ rs.getDate("fecha"));
             System.out.println("Telefono: "+ rs.getTime("hora"));
             System.out.println("Telefono: "+ rs.getString("idvehiculo"));
@@ -160,7 +160,7 @@ public void mostrarCitasHoy(){
     ResultSet rs=stmt.executeQuery(query)){
         
         while(rs.next()){
-            System.out.println("ID: "+ rs.getInt("numerocita"));
+            System.out.println("Numero: "+ rs.getInt("numerocita"));
             System.out.println("Nombre: "+ rs.getDate("fecha"));
             System.out.println("Telefono: "+ rs.getTime("hora"));
             System.out.println("Telefono: "+ rs.getString("idvehiculo"));
@@ -175,4 +175,27 @@ public void mostrarCitasHoy(){
     }
 }
 
+public void mostrarCitasID(int numerocita){
+
+    Connection conexion= dao.ConexionDB.conectar();
+
+    String query="SELECT * FROM citas WHERE numerocita="+ numerocita;
+    try(Statement stmt = conexion.createStatement();
+    ResultSet rs=stmt.executeQuery(query)){
+        
+        while(rs.next()){
+            System.out.println("Numero: "+ rs.getInt("numerocita"));
+            System.out.println("Nombre: "+ rs.getDate("fecha"));
+            System.out.println("Telefono: "+ rs.getTime("hora"));
+            System.out.println("Telefono: "+ rs.getString("idvehiculo"));
+
+            System.out.println("-------------------------");
+
+        }
+
+    }catch(SQLException e){
+        System.out.println("error al realizar la consulta"+ e.getMessage());
+
+    }
+}
 }

@@ -7,6 +7,7 @@ import model.Producto;
 public class ProductoMenu {
     Scanner sc = new Scanner(System.in);
     ProductoDB productoDB = new ProductoDB();
+    Taller taller = new Taller();
 
     public void menu() {
         int opcion;
@@ -21,7 +22,15 @@ public class ProductoMenu {
             case 1 -> crearProducto();
             case 2 -> modificarProducto();
             case 3 -> borrarProducto();
-            // case 4 -> Salir no implementado
+            case 4 -> { 
+                System.out.println("1. Al menú principal");
+                System.out.println("2. Cerrar programa.");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1 -> taller.menu();
+                    case 2 -> System.exit(0);
+                }
+            }
         }
 
     }

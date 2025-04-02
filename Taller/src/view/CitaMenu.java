@@ -172,7 +172,7 @@ public class CitaMenu {
         String respuesta;
 
         System.out.println("Numero de la Cita: ");
-        id = sc.next();
+        numeroCita = sc.nextInt();
 
         System.out.println("La cita ");
         citaDB.mostrarCitasID(numeroCita);

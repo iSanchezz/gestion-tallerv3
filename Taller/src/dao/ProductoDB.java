@@ -21,7 +21,8 @@ public class ProductoDB {
                 stmt.setString(1, id);
                 stmt.setString(2, nombre);                  
                 stmt.setDouble(4, precio);
-    
+                stmt.executeUpdate();
+
                 System.out.println("los datos se han introducido con exito");
 
             }catch(SQLException e){
@@ -40,6 +41,7 @@ public class ProductoDB {
             try(PreparedStatement stmt= conexion.prepareStatement(query)){
 
                 stmt.setString(1, nuevonombre);
+                stmt.executeUpdate();
 
                 System.out.println("los datos se han actualizado con exito");
 
@@ -57,6 +59,7 @@ public class ProductoDB {
             try(PreparedStatement stmt= conexion.prepareStatement(query)){
 
                 stmt.setDouble(1, nuevoprecio);
+                stmt.executeUpdate();
 
                 System.out.println("los datos se han actualizado con exito");
 

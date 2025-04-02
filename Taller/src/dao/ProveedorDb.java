@@ -22,6 +22,7 @@ public class ProveedorDB {
             stmt.setString(1, id);
             stmt.setString(2, nombre);
             stmt.setInt(3, telefono);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han introducido con exito");
 
@@ -41,6 +42,7 @@ public class ProveedorDB {
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, nuevonombre);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han actualizado con exito");
 
@@ -58,6 +60,7 @@ public class ProveedorDB {
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setInt(1, nuevotelefono);
+            stmt.executeUpdate();
 
             System.out.println("los datos se han actualizado con exito");
 

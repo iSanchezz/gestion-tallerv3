@@ -24,7 +24,7 @@ public class CitaMenu {
         opcion = sc.nextInt();
 
         switch(opcion) {
-            case 1 -> crearCita();
+            case 1 -> citaDB.insertarCita(crearCita());
             case 2 -> modificarCita();
             case 3 -> borrarCita();
             case 4 -> { 
@@ -80,10 +80,10 @@ public class CitaMenu {
 
 
                 numeroCita = citaDB.generarNumCita();
-                Cita cita = new Cita(numeroCita, fecha, hora, idVehiculo);
+               
                 exito=true;
                 System.out.println("Se ha creado una cita el " + fecha + " a las " + hora + " con el cliente " + dueño);
-                return cita;
+                return new Cita(numeroCita, fecha, hora, idVehiculo);
 
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());

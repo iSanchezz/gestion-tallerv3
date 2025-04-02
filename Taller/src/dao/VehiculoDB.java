@@ -159,7 +159,7 @@ public class VehiculoDB {
         }
     }
 
-    public String mostrarDueñoVehiclo(String id){
+    public String mostrarDueñoVehiculo(String id){
         Connection conexion = dao.ConexionDB.conectar();
    
        String query="SELECT dueño FROM vehiculos WHERE id= "+id;

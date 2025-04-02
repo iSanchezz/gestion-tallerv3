@@ -8,6 +8,7 @@ import java.time.Year;
 import dao.ClienteDB;
 import java.util.Scanner;
 import dao.VehiculoDB;
+import java.time.LocalTime;
 
 public class CitaMenu {
     Scanner sc = new Scanner(System.in);
@@ -33,7 +34,7 @@ public class CitaMenu {
         }
     }    
 
-    public Cita crearCita() { //Hay que implementar un metodo que devuelva el dueño del vehiculo
+    public Cita crearCita() {
         int numeroCita = 0;
         boolean exito;
         LocalDate fecha;
@@ -90,5 +91,104 @@ public class CitaMenu {
                 return null;
             }
         } while (!exito);    
+    }
+
+
+    public void modificarCita() {
+        LocalDate nuevaFecha;
+        LocalTime nuevoHorario;
+        int numeroCita;
+        int opcion;
+        int nuevoDia;
+        int nuevoMes;
+        int nuevoAño;
+        int nuevaHora;
+        int nuevosMinutos;
+
+
+            System.out.println("Qué cita quieres modificar?");
+            citaDB.mostrarCitasFuturo();
+            numeroCita = sc.nextInt();
+
+            System.out.println("Que quieres modificar?");
+            System.out.println("1. Fecha");
+            System.out.println("2. Hora");
+            System.out.println("3. Todo");
+
+            opcion = sc.nextInt();
+            
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println("Dia: ");
+                    nuevoDia = sc.nextInt();
+
+                    System.out.println("Mes: ");
+                    nuevoMes = sc.nextInt();
+
+                    System.out.println("Año: ");
+                    nuevoAño = sc.nextInt();
+
+                    nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
+                    citaDB.modificarFecha(numeroCita, nuevaFecha);
+                }
+                case 2 -> {
+                    System.out.println("Hora: ");
+                    nuevaHora = sc.nextInt();
+
+                    System.out.println("Minutos:");
+                    nuevosMinutos = sc.nextInt();
+
+                    nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
+                    citaDB.modificarHora(numeroCita, nuevoHorario);
+                }
+                case 3 -> {
+                    System.out.println("Dia: ");
+                    nuevoDia = sc.nextInt();
+
+                    System.out.println("Mes: ");
+                    nuevoMes = sc.nextInt();
+
+                    System.out.println("Año: ");
+                    nuevoAño = sc.nextInt();
+
+                    System.out.println("Hora: ");
+                    nuevaHora = sc.nextInt();
+
+                    System.out.println("Minutos:");
+                    nuevosMinutos = sc.nextInt();
+
+                    nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
+                    citaDB.modificarFecha(numeroCita, nuevaFecha);
+
+                    nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
+                    citaDB.modificarHora(numeroCita, nuevoHorario);
+
+                }
+            }
+    }
+
+    public void borrarCita() {
+        int numeroCita;
+        String respuesta;
+
+        System.out.println("Numero de la Cita: ");
+        id = sc.next();
+
+        System.out.println("La cita ");
+        citaDB.mostrarCitasID(numeroCita);
+        System.out.println("se borrara"); 
+        System.out.println("Quieres continuar?");
+        respuesta = sc.next();
+        respuesta = respuesta.toLowerCase();
+
+        if ("si".equals(respuesta)) {
+            citaDB.borrarCita(numeroCita);
+            System.out.println("La cita ha sido eliminada con éxito");
+
+        } else { 
+            System.out.println("Se ha cancelado la operación");
+        }
+        menu();
+
     }
 }

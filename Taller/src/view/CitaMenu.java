@@ -1,14 +1,11 @@
 package view;
 
 import dao.CitaDB;
-import model.Cita;
+import dao.VehiculoDB;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Year;
-import dao.ClienteDB;
 import java.util.Scanner;
-import dao.VehiculoDB;
-import java.time.LocalTime;
+import model.Cita;
 
 public class CitaMenu {
     Scanner sc = new Scanner(System.in);
@@ -129,7 +126,7 @@ public class CitaMenu {
                     nuevoAño = sc.nextInt();
 
                     nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
-                    citaDB.modificarFecha(numeroCita, nuevaFecha);
+                    citaDB.modificarFechaCita(numeroCita, nuevaFecha);
                 }
                 case 2 -> {
                     System.out.println("Hora: ");
@@ -139,7 +136,7 @@ public class CitaMenu {
                     nuevosMinutos = sc.nextInt();
 
                     nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
-                    citaDB.modificarHora(numeroCita, nuevoHorario);
+                    citaDB.modificarHoraCita(numeroCita, nuevoHorario);
                 }
                 case 3 -> {
                     System.out.println("Dia: ");
@@ -158,10 +155,10 @@ public class CitaMenu {
                     nuevosMinutos = sc.nextInt();
 
                     nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
-                    citaDB.modificarFecha(numeroCita, nuevaFecha);
+                    citaDB.modificarFechaCita(numeroCita, nuevaFecha);
 
                     nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
-                    citaDB.modificarHora(numeroCita, nuevoHorario);
+                    citaDB.modificarHoraCita(numeroCita, nuevoHorario);
 
                 }
             }

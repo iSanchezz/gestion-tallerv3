@@ -5,6 +5,7 @@ import dao.VehiculoDB;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
+
 import model.Cita;
 
 public class CitaMenu {
@@ -27,12 +28,20 @@ public class CitaMenu {
             case 1 -> crearCita();
             case 2 -> modificarCita();
             case 3 -> borrarCita();
-            // case 4 -> Salir no implementado;
+            case 4 -> { 
+                System.out.println("1. Al menú principal");
+                System.out.println("2.Cerrar programa.");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1 -> taller.menu();
+                    case 2 -> System.exit(0);
+                }
+            }
         }
     }    
 
     public Cita crearCita() {
-        int numeroCita = 0;
+        int numeroCita;
         boolean exito;
         LocalDate fecha;
         LocalTime hora;
@@ -48,7 +57,6 @@ public class CitaMenu {
         do {
             try {
                 System.out.println("ID del vehiculo: ");
-                vehiculoDB.mostrarVehiculos();
                 idVehiculo = sc.next();
                 dueño = vehiculoDB.mostrarDueñoVehiculo(idVehiculo);
 
@@ -71,10 +79,12 @@ public class CitaMenu {
                 fecha = LocalDate.of(año, mes, dia);
                 hora = LocalTime.of(horas, minutos);
 
+
+                numeroCita = citaDB.generarNumCita();
                 Cita cita = new Cita(numeroCita, fecha, hora, idVehiculo);
                 exito=true;
                 System.out.println("Se ha creado una cita el " + fecha + " a las " + hora + " con el cliente " + dueño);
-                return new Cita(numeroCita, fecha, hora, idVehiculo);
+                return cita;
 
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());

@@ -21,7 +21,7 @@ public class App {
 
         if (conexion == null) {
 
-            System.out.println("error al conectar");
+             System.out.println("error al conectar");
         }
 
         ClienteMenu menuCliente = new ClienteMenu();

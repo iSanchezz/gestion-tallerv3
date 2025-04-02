@@ -20,7 +20,7 @@ public int generarNumCita(){
      try(Statement stmt = conexion.createStatement();
             ResultSet rs=stmt.executeQuery(query)){
             
-                   return rs.getInt(query);
+                   return rs.getInt(query)+1;
 
             }catch(SQLException e){
                 System.out.println("error al realizar la consulta"+ e.getMessage());

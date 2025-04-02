@@ -35,6 +35,7 @@ public class Taller {
             System.out.println("3. Proveedores");
             System.out.println("4. Inventario");
             System.out.println("5. Vehiculo");
+            System.out.println("6. Citas");            
             System.out.println("7. Salir");
 
             opcion = sc.nextInt();

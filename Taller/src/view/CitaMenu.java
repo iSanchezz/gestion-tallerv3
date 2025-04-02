@@ -5,14 +5,13 @@ import dao.VehiculoDB;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
-
 import model.Cita;
 
 public class CitaMenu {
     Scanner sc = new Scanner(System.in);
+    Taller taller = new Taller();
     CitaDB citaDB = new CitaDB();
     VehiculoDB vehiculoDB = new VehiculoDB();
-    int totalCitas;
 
     public void menu() {
         int opcion;
@@ -30,7 +29,7 @@ public class CitaMenu {
             case 3 -> borrarCita();
             case 4 -> { 
                 System.out.println("1. Al menú principal");
-                System.out.println("2.Cerrar programa.");
+                System.out.println("2. Cerrar programa.");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1 -> taller.menu();

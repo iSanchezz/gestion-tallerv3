@@ -7,6 +7,7 @@ import model.Empleado;
 public class EmpleadoMenu {
     Scanner sc = new Scanner(System.in);
     EmpleadoDB empleadoDB = new EmpleadoDB();
+    Taller taller = new Taller();
 
     public void menu() {
         int opcion;
@@ -14,13 +15,22 @@ public class EmpleadoMenu {
         System.out.println("1. Crear empleado");
         System.out.println("2. Modificar empleado");
         System.out.println("3. Borrar empleado");
+        System.out.println("4. Salir");
 
         opcion = sc.nextInt();
         switch (opcion) {
             case 1 -> empleadoDB.insertarEmpleado(crearEmpleado());
             case 2 -> modificarEmpleado();
             case 3 -> borrarEmpleado();
-            // case 4 -> Salir no implementado
+            case 4 -> { 
+                System.out.println("1. Al menú principal");
+                System.out.println("2. Cerrar programa.");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1 -> taller.menu();
+                    case 2 -> System.exit(0);
+                }
+            }
         }
     }
 

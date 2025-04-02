@@ -7,6 +7,7 @@ import model.Cliente;
 public class ClienteMenu {
     Scanner sc = new Scanner(System.in);
     ClienteDB clienteDB = new ClienteDB();
+    Taller taller = new Taller();
 
     public void menu() {
         int opcion;
@@ -14,13 +15,22 @@ public class ClienteMenu {
         System.out.println("1. Crear cliente");
         System.out.println("2. Modificar cliente");
         System.out.println("3. Borrar cliente");
+        System.out.println("4. Salir");
 
         opcion = sc.nextInt();
         switch (opcion) {
             case 1 -> clienteDB.insertarCliente(crearCliente());
             case 2 -> modificarCliente();
             case 3 -> borrarCliente();
-            // case 4 -> Salir no implementado
+            case 4 -> { 
+                System.out.println("1. Al menú principal");
+                System.out.println("2. Cerrar programa.");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1 -> taller.menu();
+                    case 2 -> System.exit(0);
+                }
+            }
         }
 
     }

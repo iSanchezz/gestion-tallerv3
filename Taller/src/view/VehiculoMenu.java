@@ -7,6 +7,7 @@ import model.Vehiculo;
 public class VehiculoMenu {
     Scanner sc = new Scanner(System.in);
     VehiculoDB vehiculoDB = new VehiculoDB();
+    Taller taller = new Taller();
 
     public void menu() {
         int opcion;
@@ -14,12 +15,22 @@ public class VehiculoMenu {
         System.out.println("1. Crear vehiculo");
         System.out.println("2. Modificar vehiculo");
         System.out.println("3. Borrar vehiculo");
+        System.out.println("4. Salir");
 
         opcion = sc.nextInt();
         switch (opcion) {
             case 1 -> vehiculoDB.insertarVehiculo(crearVehiculo());
-             case 2 -> modificarVehiculo();
-             case 3 -> borrarVehiculo();
+            case 2 -> modificarVehiculo();
+            case 3 -> borrarVehiculo();
+            case 4 -> { 
+                System.out.println("1. Al menú principal");
+                System.out.println("2. Cerrar programa.");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1 -> taller.menu();
+                    case 2 -> System.exit(0);
+                }
+            }
         }
     }
 

@@ -7,6 +7,7 @@ import model.Proveedor;
 public class ProveedorMenu {
     Scanner sc = new Scanner(System.in);
     ProveedorDB proveedorDB = new ProveedorDB();
+    Taller taller = new Taller();
 
     public void menu() {
         int opcion;
@@ -14,12 +15,22 @@ public class ProveedorMenu {
         System.out.println("1. Crear proveedor");
         System.out.println("2. Modificar proveedor");
         System.out.println("3. Borrar proveedor");
+        System.out.println("4. Salir");
 
         opcion = sc.nextInt();
         switch (opcion) {
             case 1 -> proveedorDB.insertarProveedor(crearProveedor());
             case 2 -> modificarProveedor();
-            // case 3 -> borrarProveedor();
+            case 3 -> borrarProveedor();
+            case 4 -> { 
+                System.out.println("1. Al menú principal");
+                System.out.println("2. Cerrar programa.");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1 -> taller.menu();
+                    case 2 -> System.exit(0);
+                }
+            }
         }
     }
 

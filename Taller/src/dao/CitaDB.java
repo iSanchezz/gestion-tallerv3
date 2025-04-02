@@ -1,11 +1,11 @@
 package dao;
 
-import java.time.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.*;
 
 public class CitaDB {
     
@@ -32,10 +32,10 @@ public int generarNumCita(){
 public void insertarCita(model.Cita cita){
     Connection conexion = dao.ConexionDB.conectar();
 
-    int numerocita=cita.getNumerocita();
+    int numerocita=cita.getNumeroCita();
     LocalDate fecha=cita.getFecha();    
     LocalTime hora=cita.getHora();
-    String idvehiculo=.getIdvehiculo();
+    String idvehiculo = cita.getIdVehiculo();
 
 
     String query = "INSERT INTO citas (numerocita, fecha, hora, idvehiculo) VALUES (?,?,?,?)";
@@ -43,8 +43,8 @@ public void insertarCita(model.Cita cita){
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setInt(1, numerocita);
-            stmt.setDate(2, fecha);
-            stmt.setTime(3, hora);
+            stmt.setDate(2, java.sql.Date.valueOf(fecha));
+            stmt.setTime(3, java.sql.Time.valueOf(hora));
             stmt.setString(4, idvehiculo);
 
 

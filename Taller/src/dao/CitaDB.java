@@ -33,6 +33,7 @@ public void insertarCita(model.Cita cita){
     Connection conexion = dao.ConexionDB.conectar();
 
     int numerocita=cita.getNumeroCita();
+
     LocalDate  fecha=cita.getFecha();
     LocalTime hora=cita.getHora();
     String idvehiculo=cita.getIdVehiculo();

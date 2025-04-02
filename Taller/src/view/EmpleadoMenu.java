@@ -19,7 +19,7 @@ public class EmpleadoMenu {
         switch (opcion) {
             case 1 -> empleadoDB.insertarEmpleado(crearEmpleado());
             case 2 -> modificarEmpleado();
-            // case 3 -> borrarEmpleado();
+            case 3 -> borrarEmpleado();
             // case 4 -> Salir no implementado
         }
     }

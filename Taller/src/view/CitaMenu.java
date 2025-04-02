@@ -3,14 +3,16 @@ package view;
 import dao.CitaDB;
 import model.Cita;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Year;
-
+import dao.ClienteDB;
 import java.util.Scanner;
+import dao.VehiculoDB;
 
 public class CitaMenu {
     Scanner sc = new Scanner(System.in);
     CitaDB citaDB = new CitaDB();
+    VehiculoDB vehiculoDB = new VehiculoDB();
     int totalCitas;
 
     public void menu() {
@@ -27,49 +29,66 @@ public class CitaMenu {
             case 1 -> crearCita();
             case 2 -> modificarCita();
             case 3 -> borrarCita();
+            // case 4 -> Salir no implementado;
         }
     }    
 
-    public Cita crearCita() {
+    public Cita crearCita() { //Hay que implementar un metodo que devuelva el dueño del vehiculo
+        int numeroCita = 0;
         boolean exito;
         LocalDate fecha;
-        LocalDateTime hora;
+        LocalTime hora;
         int año;
         int mes;
         int dia;
+        int horas;
+        int minutos;
+        String respuesta;
+        String idVehiculo;
+        String dueño;
 
         do {
-            exito =false;
             try {
+                System.out.println("ID del vehiculo: ");
+                vehiculoDB.mostrarVehiculos();
+                idVehiculo = sc.next();
+                dueño = vehiculoDB.mostrarDueñoVehiculo(idVehiculo);
+
                 System.out.println("Dia: ");
                 dia = sc.nextInt();
 
-                System.out.println("Mies: ");
+                System.out.println("Mes: ");
                 mes = sc.nextInt();
 
                 System.out.println("Año: ");
                 año = sc.nextInt();
 
-                System.out.println("Fecha: ");
+
+                System.out.println("Hora: ");
+                horas = sc.nextInt();
+
+                System.out.println("Minutos: ");
+                minutos = sc.nextInt();
+
                 fecha = LocalDate.of(año, mes, dia);
+                hora = LocalTime.of(horas, minutos);
 
-
+                Cita cita = new Cita(numeroCita, fecha, hora, idVehiculo);
+                exito=true;
+                System.out.println("Se ha creado una cita el " + fecha + " a las " + hora + " con el cliente " + dueño);
+                return new Cita(numeroCita, fecha, hora, idVehiculo);
 
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
                 System.out.println("Quieres volver a intentarlo?");
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
-                if (respuesta.equals("si")) {
-                    exito=true;
+                if (respuesta.equals("si")) {     
                 } else {
-                    return null;
+                    exito=true;
                 }
+                return null;
             }
-        } while (exito);
-        System.out.println("El cliente " + nombre + " con ID " + id + " y telefono " + telefono+ " se ha creado correctamente");
-        return new Cliente(id, nombre, telefono);
-
-
+        } while (!exito);    
     }
 }

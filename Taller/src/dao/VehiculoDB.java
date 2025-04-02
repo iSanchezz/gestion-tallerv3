@@ -158,4 +158,22 @@ public class VehiculoDB {
 
         }
     }
+
+    public String mostrarDueñoVehiclo(String id){
+        Connection conexion = dao.ConexionDB.conectar();
+   
+       String query="SELECT dueño FROM vehiculos WHERE id= "+id;
+   
+        try(Statement stmt = conexion.createStatement();
+               ResultSet rs=stmt.executeQuery(query)){
+               
+                      return rs.getString(query);
+   
+               }catch(SQLException e){
+                   System.out.println("error al realizar la consulta"+ e.getMessage());
+                   
+               }
+               return null;
+       }
+
 }

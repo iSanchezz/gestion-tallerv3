@@ -181,4 +181,25 @@ public class VehiculoDB {
                return null;
        }
 
+       public boolean comprobarVehiculo(String id){
+
+        ResultSet resultado=null;
+        Connection conexion= dao.ConexionDB.conectar();
+        String query="SELECT COUNT FROM vehiculos WHERE id= ?";
+
+
+        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+
+            stmt.setString(1, id);
+            resultado=stmt.executeQuery();
+            if (resultado.next()) {           
+                        return true;
+                }
+
+        }catch(SQLException e){
+            System.out.println("error al verificar el dato"+ e.getMessage());
+
+        }
+        return false;
+    }
 }

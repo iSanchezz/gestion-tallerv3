@@ -25,18 +25,37 @@ public class EconomiaDB {
     }
 
     public double calcularBalance() {
-        String sql = "SELECT SUM(CASE WHEN tipo = 'INGRESO' THEN cantidad ELSE -cantidad END) AS balance FROM transacciones";
+        double ingresos = 0.0;
+        double gastos = 0.0;
+        
+        // Calcular ingresos
+        String sqlIngresos = "SELECT SUM(cantidad) AS total FROM transacciones WHERE tipo = 'INGRESO'";
         try (Connection conn = ConexionDB.conectar();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             ResultSet rs = stmt.executeQuery(sqlIngresos)) {
             
             if (rs.next()) {
-                return rs.getDouble("balance");
+                ingresos = rs.getDouble("total");
             }
         } catch (SQLException e) {
-            System.out.println("Error al calcular balance: " + e.getMessage());
+            System.out.println("Error al calcular ingresos: " + e.getMessage());
         }
-        return 0.0;
+        
+        // Calcular gastos
+        String sqlGastos = "SELECT SUM(cantidad) AS total FROM transacciones WHERE tipo = 'GASTO'";
+        try (Connection conn = ConexionDB.conectar();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sqlGastos)) {
+            
+            if (rs.next()) {
+                gastos = rs.getDouble("total");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al calcular gastos: " + e.getMessage());
+        }
+        
+        // Calcular balance final
+        return ingresos - gastos;
     }
 
 
@@ -61,41 +80,5 @@ public class EconomiaDB {
         } catch (SQLException e) {
             System.out.println("Error al mostrar transacciones: " + e.getMessage());
         }
-    }
-
-    public double calcularIngresosPorPeriodo(LocalDate inicio, LocalDate fin) {
-        String sql = "SELECT SUM(cantidad) AS total FROM transacciones WHERE tipo = 'INGRESO' AND DATE(fecha) BETWEEN ? AND ?";
-        try (Connection conn = ConexionDB.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setDate(1, java.sql.Date.valueOf(inicio));
-            pstmt.setDate(2, java.sql.Date.valueOf(fin));
-            ResultSet rs = pstmt.executeQuery();
-            
-            if (rs.next()) {
-                return rs.getDouble("total");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al calcular ingresos: " + e.getMessage());
-        }
-        return 0.0;
-    }
-
-    public double calcularGastosPorPeriodo(LocalDate inicio, LocalDate fin) {
-        String sql = "SELECT SUM(cantidad) AS total FROM transacciones WHERE tipo = 'GASTO' AND DATE(fecha) BETWEEN ? AND ?";
-        try (Connection conn = ConexionDB.conectar();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setDate(1, java.sql.Date.valueOf(inicio));
-            pstmt.setDate(2, java.sql.Date.valueOf(fin));
-            ResultSet rs = pstmt.executeQuery();
-            
-            if (rs.next()) {
-                return rs.getDouble("total");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al calcular gastos: " + e.getMessage());
-        }
-        return 0.0;
     }
 } 

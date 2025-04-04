@@ -54,10 +54,6 @@ public class ClienteMenu {
                 System.out.println("Telefono: ");
                 telefono = sc.nextInt();
 
-                
-               
-              
-
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
                 System.out.println("Quieres volver a intentarlo?");

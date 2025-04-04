@@ -16,6 +16,7 @@ public class CitaMenu {
     public void menu() {
         int opcion;
 
+        System.out.println("Qué quieres hacer?");
         System.out.println("1. Solicitar cita");
         System.out.println("2. Modificar cita");
         System.out.println("3. Cancelar cita");

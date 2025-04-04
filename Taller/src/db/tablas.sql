@@ -41,3 +41,17 @@ CREATE TABLE transacciones (
     descripcion VARCHAR(255),
     fecha TIMESTAMP NOT NULL,
 ); 
+
+CREATE TABLE servicios(
+    id INT(3) PRIMARY KEY,
+    idempleado VARCHAR(12),
+    idcliente VARCHAR(12),
+    idvehiculo VARCHAR(15),
+    numerocita INT(10),
+    precio DECIMAL(10,2),
+    descripcion VARCHAR(200),
+    FOREIGN KEY (idempleado) REFERENCES empleados(id),
+    FOREIGN KEY (idcliente) REFERENCES clientes(id),
+    FOREIGN KEY (idvehiculo) REFERENCES vehiculos(id),
+    FOREIGN KEY (numerocita) REFERENCES citas(numerocita),
+ );

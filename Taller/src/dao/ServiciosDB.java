@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class ServiciosDB {
 
@@ -42,6 +40,70 @@ public class ServiciosDB {
             System.out.println("error al introducir datos");
 
         }
+}
+public void borrarServicio(int idServicio){
+
+    Connection conexion= dao.ConexionDB.conectar();
+
+    String query= "DELETE * FROM servicios WHERE id="+idServicio;
+
+    try(PreparedStatement stmt= conexion.prepareStatement(query)){
+        stmt.executeUpdate();
+        System.out.println("los datos se han actualizado con exito");
+    }catch(SQLException e){
+        System.out.println("error al actualizar datos");
+
+    }
+}
+public void mostrarServicios(){
+
+    Connection conexion= dao.ConexionDB.conectar();
+
+    String query="SELECT * FROM servicios";
+    try(Statement stmt = conexion.createStatement();
+    ResultSet rs=stmt.executeQuery(query)){
+        
+        while(rs.next()){
+            System.out.println("ID: "+ rs.getString("id"));
+            System.out.println("Empleado: "+ rs.getString("idempleado"));
+            System.out.println("Cliente: "+ rs.getDouble("idcliente"));
+            System.out.println("Vehiculo: "+ rs.getDouble("idvehiculo"));
+            System.out.println("Cita: "+ rs.getDouble("numerocita"));
+            System.out.println("Precio: "+ rs.getDouble("precio"));
+           
+            System.out.println("-------------------------");
+
+        }
+
+    }catch(SQLException e){
+        System.out.println("error al realizar la consulta"+ e.getMessage());
+
+    }
+}
+public void mostrarServiciosID(int idservicio){
+
+    Connection conexion= dao.ConexionDB.conectar();
+
+    String query="SELECT * FROM servicios WHERE id= "+idservicio; 
+    try(Statement stmt = conexion.createStatement();
+    ResultSet rs=stmt.executeQuery(query)){
+        
+        while(rs.next()){
+            System.out.println("ID: "+ rs.getString("id"));
+            System.out.println("Empleado: "+ rs.getString("idempleado"));
+            System.out.println("Cliente: "+ rs.getDouble("idcliente"));
+            System.out.println("Vehiculo: "+ rs.getDouble("idvehiculo"));
+            System.out.println("Cita: "+ rs.getDouble("numerocita"));
+            System.out.println("Precio: "+ rs.getDouble("precio"));
+            System.out.println("Descrippcion: "+ rs.getDouble("descripcion"));
+            System.out.println("-------------------------");
+
+        }
+
+    }catch(SQLException e){
+        System.out.println("error al realizar la consulta"+ e.getMessage());
+
+    }
 }
 
 }

@@ -25,6 +25,7 @@ public class Taller {
         ProveedorMenu menuProveedor = new ProveedorMenu();
         VehiculoMenu menuVehiculo = new VehiculoMenu();
         CitaMenu menuCita = new CitaMenu();
+        EconomiaMenu menuEconomia = new EconomiaMenu();
        
         boolean continuar = false;
 
@@ -35,19 +36,21 @@ public class Taller {
             System.out.println("3. Proveedores");
             System.out.println("4. Inventario");
             System.out.println("5. Vehiculo");
-            System.out.println("6. Citas");            
-            System.out.println("7. Salir");
+            System.out.println("6. Citas");
+            System.out.println("7. Economía");
+            System.out.println("8. Salir");
 
             opcion = sc.nextInt();
             switch (opcion) {
 
                 case 1 -> menuCliente.menu();
                 case 2 -> menuEmpleado.menu();
-                case 3 -> menuProducto.menu();
-                case 4 -> menuProveedor.menu();
+                case 3 -> menuProveedor.menu();
+                case 4 -> menuProducto.menu();
                 case 5 -> menuVehiculo.menu();
                 case 6 -> menuCita.menu();
-                case 7 -> continuar = true;
+                case 7 -> menuEconomia.menu();
+                case 8 -> continuar = true;
 
             }
 

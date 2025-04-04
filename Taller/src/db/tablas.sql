@@ -33,3 +33,11 @@ CREATE TABLE citas(
     idvehiculo VARCHAR(15),
     FOREIGN KEY (idVehiculo) REFERENCES vehiculos(id)
 );
+
+CREATE TABLE transacciones (
+    id INT PRIMARY KEY,
+    tipo VARCHAR(10) NOT NULL,
+    cantidad DECIMAL(10,2) NOT NULL,
+    descripcion VARCHAR(255),
+    fecha TIMESTAMP NOT NULL,
+); 

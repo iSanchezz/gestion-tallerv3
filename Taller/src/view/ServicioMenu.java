@@ -64,7 +64,7 @@ public class ServicioMenu {
         int id = sc.nextInt();
         sc.nextLine();
         
-        serviciosDB.mostrarServicioPorId(id);
+        serviciosDB.mostrarServiciosID(id);
         menu();
     }
 
@@ -75,7 +75,7 @@ public class ServicioMenu {
         String respuesta;
 
         System.out.println("El servicio ");
-        serviciosDB.mostrarServicioPorId(id);
+        serviciosDB.mostrarServiciosID(id);
         System.out.println("se borrará.");
         System.out.println("Quieres continuar?");
 

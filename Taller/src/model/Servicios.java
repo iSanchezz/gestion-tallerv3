@@ -10,12 +10,12 @@ public class Servicios {
     String descripcion;
 
 
-    public Servicios(int id, String idEmpleado, String idcliente, String idvehiculo, int numeroCita, double precio, String descripcion){
+    public Servicios(int id, String idEmpleado, String idCliente, String idVehiculo, int numeroCita, double precio, String descripcion){
 
         this.id=id;
         this.idEmpleado=idEmpleado;
         this.idCliente=idCliente;
-        this.idVehiculo=idvehiculo;
+        this.idVehiculo=idVehiculo;
         this.numeroCita=numeroCita;
         this.precio=precio;
         this.descripcion=descripcion;

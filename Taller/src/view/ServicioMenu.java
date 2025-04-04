@@ -37,17 +37,29 @@ public class ServicioMenu {
     }
 
     public void registrarServicio() {
-        System.out.print("Nombre del servicio: ");
-        String nombre = sc.nextLine();
+        System.out.print("ID: ");
+        int id = sc.nextInt();
         
-        System.out.print("Descripción: ");
+        System.out.print("ID del Empleado: ");
+        String idEmpleado = sc.next();
+
+        System.out.print("ID del Cliente: ");
+        String idCliente = sc.next();
+        
+        System.out.print("ID del vehiculo: ");
+        String idVehiculo = sc.next();
+        sc.nextLine();
+
+        System.out.println("Numero de cita: ");
+        int numeroCita = sc.nextInt();
+
+        System.out.println("Precio del servicio: ");
+        double precio = sc.nextDouble();
+
+        System.out.println("Descripcion del servicio: ");
         String descripcion = sc.nextLine();
         
-        System.out.print("Precio: ");
-        double precio = sc.nextDouble();
-        sc.nextLine();
-        
-        Servicios servicio = new Servicios(0, nombre, descripcion, precio);
+        Servicios servicio = new Servicios(id, idEmpleado, idCliente, idVehiculo, numeroCita, precio, descripcion);
         serviciosDB.insertarServicio(servicio);
         
         System.out.println("Servicio registrado correctamente");

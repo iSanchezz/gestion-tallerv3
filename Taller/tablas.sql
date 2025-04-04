@@ -31,5 +31,18 @@ CREATE TABLE citas(
     fecha DATE NOT NULL,
     hora TIME NOT NULL,
     idvehiculo VARCHAR(15),
-    FOREIGN KEY (idVehiculo) REFERENCES vehiculos(id)
+    FOREIGN KEY (idvehiculo) REFERENCES vehiculos(id)
 );
+CREATE TABLE servicios(
+    id INT(3) PRIMARY KEY,
+    idempleado VARCHAR(12),
+    idcliente VARCHAR(12),
+    idvehiculo VARCHAR(15),
+    numerocita INT(10),
+    precio DECIMAL(10,2),
+    descripcion VARCHAR(200),
+    FOREIGN KEY (idempleado) REFERENCES empleados(id),
+    FOREIGN KEY (idcliente) REFERENCES clientes(id),
+    FOREIGN KEY (idvehiculo) REFERENCES vehiculos(id),
+    FOREIGN KEY (numerocita) REFERENCES citas(numerocita),
+ );

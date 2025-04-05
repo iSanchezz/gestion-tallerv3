@@ -24,11 +24,11 @@ public class CitaMenu {
 
         opcion = sc.nextInt();
 
-        switch(opcion) {
+        switch (opcion) {
             case 1 -> citaDB.insertarCita(crearCita());
             case 2 -> modificarCita();
             case 3 -> borrarCita();
-            case 4 -> { 
+            case 4 -> {
                 System.out.println("1. Al menú principal");
                 System.out.println("2. Cerrar programa.");
                 opcion = sc.nextInt();
@@ -38,23 +38,24 @@ public class CitaMenu {
                 }
             }
         }
-    }    
+    }
 
     public Cita crearCita() {
-        int numeroCita;
-        boolean exito;
-        LocalDate fecha;
-        LocalTime hora;
+        int numeroCita = 0;
+        LocalDate fecha = null;
+        LocalTime hora = null;
         int año;
         int mes;
         int dia;
         int horas;
         int minutos;
         String respuesta;
-        String idVehiculo;
-        String dueño;
+        String idVehiculo = "";
+        String dueño = "";
+        boolean exito;
 
         do {
+            exito = false;
             try {
                 System.out.println("ID del vehiculo: ");
                 idVehiculo = sc.next();
@@ -69,7 +70,6 @@ public class CitaMenu {
                 System.out.println("Año: ");
                 año = sc.nextInt();
 
-
                 System.out.println("Hora: ");
                 horas = sc.nextInt();
 
@@ -79,27 +79,24 @@ public class CitaMenu {
                 fecha = LocalDate.of(año, mes, dia);
                 hora = LocalTime.of(horas, minutos);
 
-
                 numeroCita = citaDB.generarNumCita();
-               
-                exito=true;
+
                 System.out.println("Se ha creado una cita el " + fecha + " a las " + hora + " con el cliente " + dueño);
-                return new Cita(numeroCita, fecha, hora, idVehiculo);
+                exito = true;
+                Cita cita = new Cita(numeroCita, fecha, hora, idVehiculo);
+                return cita;
 
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
-                System.out.println("Quieres volver a intentarlo?");
-                respuesta = sc.next();
-                respuesta = respuesta.toLowerCase();
-                if (respuesta.equals("si")) {     
-                } else {
-                    exito=true;
+                System.out.println("¿Quieres volver a intentarlo? (si/no)");
+                respuesta = sc.next().toLowerCase();
+                if (!respuesta.equals("si")) {
+                    return null;
                 }
-                return null;
             }
-        } while (!exito);    
+        } while (!exito);
+        return null;
     }
-
 
     public void modificarCita() {
         LocalDate nuevaFecha;
@@ -111,91 +108,118 @@ public class CitaMenu {
         int nuevoAño;
         int nuevaHora;
         int nuevosMinutos;
+        boolean exito;
+        String respuesta;
 
+        do {
+            exito = false;
+            try {
+                System.out.println("Qué cita quieres modificar?");
+                citaDB.mostrarCitasFuturo();
+                numeroCita = sc.nextInt();
 
-            System.out.println("Qué cita quieres modificar?");
-            citaDB.mostrarCitasFuturo();
-            numeroCita = sc.nextInt();
+                System.out.println("Que quieres modificar?");
+                System.out.println("1. Fecha");
+                System.out.println("2. Hora");
+                System.out.println("3. Todo");
 
-            System.out.println("Que quieres modificar?");
-            System.out.println("1. Fecha");
-            System.out.println("2. Hora");
-            System.out.println("3. Todo");
+                opcion = sc.nextInt();
 
-            opcion = sc.nextInt();
-            
-            switch (opcion) {
-                case 1 -> {
-                    System.out.println("Dia: ");
-                    nuevoDia = sc.nextInt();
+                switch (opcion) {
+                    case 1 -> {
+                        System.out.println("Dia: ");
+                        nuevoDia = sc.nextInt();
 
-                    System.out.println("Mes: ");
-                    nuevoMes = sc.nextInt();
+                        System.out.println("Mes: ");
+                        nuevoMes = sc.nextInt();
 
-                    System.out.println("Año: ");
-                    nuevoAño = sc.nextInt();
+                        System.out.println("Año: ");
+                        nuevoAño = sc.nextInt();
 
-                    nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
-                    citaDB.modificarFechaCita(numeroCita, nuevaFecha);
+                        nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
+                        citaDB.modificarFechaCita(numeroCita, nuevaFecha);
+                    }
+                    case 2 -> {
+                        System.out.println("Hora: ");
+                        nuevaHora = sc.nextInt();
+
+                        System.out.println("Minutos:");
+                        nuevosMinutos = sc.nextInt();
+
+                        nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
+                        citaDB.modificarHoraCita(numeroCita, nuevoHorario);
+                    }
+                    case 3 -> {
+                        System.out.println("Dia: ");
+                        nuevoDia = sc.nextInt();
+
+                        System.out.println("Mes: ");
+                        nuevoMes = sc.nextInt();
+
+                        System.out.println("Año: ");
+                        nuevoAño = sc.nextInt();
+
+                        System.out.println("Hora: ");
+                        nuevaHora = sc.nextInt();
+
+                        System.out.println("Minutos:");
+                        nuevosMinutos = sc.nextInt();
+
+                        nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
+                        citaDB.modificarFechaCita(numeroCita, nuevaFecha);
+
+                        nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
+                        citaDB.modificarHoraCita(numeroCita, nuevoHorario);
+                    }
                 }
-                case 2 -> {
-                    System.out.println("Hora: ");
-                    nuevaHora = sc.nextInt();
+                exito = true;
 
-                    System.out.println("Minutos:");
-                    nuevosMinutos = sc.nextInt();
-
-                    nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
-                    citaDB.modificarHoraCita(numeroCita, nuevoHorario);
-                }
-                case 3 -> {
-                    System.out.println("Dia: ");
-                    nuevoDia = sc.nextInt();
-
-                    System.out.println("Mes: ");
-                    nuevoMes = sc.nextInt();
-
-                    System.out.println("Año: ");
-                    nuevoAño = sc.nextInt();
-
-                    System.out.println("Hora: ");
-                    nuevaHora = sc.nextInt();
-
-                    System.out.println("Minutos:");
-                    nuevosMinutos = sc.nextInt();
-
-                    nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
-                    citaDB.modificarFechaCita(numeroCita, nuevaFecha);
-
-                    nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);
-                    citaDB.modificarHoraCita(numeroCita, nuevoHorario);
-
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("¿Quieres volver a intentarlo? (si/no)");
+                respuesta = sc.next().toLowerCase();
+                if (!respuesta.equals("si")) {
+                    exito = true;
                 }
             }
+        } while (!exito);
+        menu();
     }
 
     public void borrarCita() {
         int numeroCita;
         String respuesta;
+        boolean exito;
 
-        System.out.println("Numero de la Cita: ");
-        numeroCita = sc.nextInt();
+        do {
+            exito = false;
+            try {
+                System.out.println("Numero de la Cita: ");
+                numeroCita = sc.nextInt();
 
-        System.out.println("La cita ");
-        citaDB.mostrarCitasID(numeroCita);
-        System.out.println("se borrara"); 
-        System.out.println("Quieres continuar?");
-        respuesta = sc.next();
-        respuesta = respuesta.toLowerCase();
+                System.out.println("La cita ");
+                citaDB.mostrarCitasID(numeroCita);
+                System.out.println("se borrara");
+                System.out.println("Quieres continuar?");
+                respuesta = sc.next().toLowerCase();
 
-        if ("si".equals(respuesta)) {
-            citaDB.borrarCita(numeroCita);
-            System.out.println("La cita ha sido eliminada con éxito");
+                if ("si".equals(respuesta)) {
+                    citaDB.borrarCita(numeroCita);
+                    System.out.println("La cita ha sido eliminada con éxito");
+                } else {
+                    System.out.println("Se ha cancelado la operación");
+                }
+                exito = true;
 
-        } else { 
-            System.out.println("Se ha cancelado la operación");
-        }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("¿Quieres volver a intentarlo? (si/no)");
+                respuesta = sc.next().toLowerCase();
+                if (!respuesta.equals("si")) {
+                    exito = true;
+                }
+            }
+        } while (!exito);
         menu();
-
     }
 }

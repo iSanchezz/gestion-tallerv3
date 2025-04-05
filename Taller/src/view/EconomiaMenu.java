@@ -41,18 +41,21 @@ public class EconomiaMenu {
         int id;
         double cantidad;
         String descripcion;
+        LocalDate fecha;
 
         System.out.println("Qué quieres hacer?");
         System.out.println("ID: ");
         id = sc.nextInt();
-        
+
         System.out.println("Cantidad: ");
         cantidad = sc.nextDouble();
         sc.nextLine();
-        
+
         System.out.println("Descripción: ");
         descripcion = sc.nextLine();
-        
+
+        System.out.println("Se introducirá la fecha actual");
+
         Transaccion transaccion = new Transaccion(id, tipo, cantidad, descripcion);
         economiaDB.insertarTransaccion(transaccion);
         menu();
@@ -70,7 +73,7 @@ public class EconomiaMenu {
         int año;
         LocalDate inicio;
         LocalDate fin;
-        
+
         System.out.println("Fecha inicio:");
         System.out.println("Día: ");
         dia = sc.nextInt();
@@ -79,7 +82,7 @@ public class EconomiaMenu {
         System.out.println("Año: ");
         año = sc.nextInt();
         inicio = LocalDate.of(año, mes, dia);
-        
+
         System.out.println("Fecha fin:");
         System.out.println("Día: ");
         dia = sc.nextInt();
@@ -88,9 +91,9 @@ public class EconomiaMenu {
         System.out.println("Año: ");
         año = sc.nextInt();
         fin = LocalDate.of(año, mes, dia);
-        
+
         economiaDB.mostrarTransaccionesPorPeriodo(inicio, fin);
         menu();
     }
 
-} 
+}

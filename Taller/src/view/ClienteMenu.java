@@ -22,7 +22,7 @@ public class ClienteMenu {
             case 1 -> clienteDB.insertarCliente(crearCliente());
             case 2 -> modificarCliente();
             case 3 -> borrarCliente();
-            case 4 -> { 
+            case 4 -> {
                 System.out.println("1. Al menú principal");
                 System.out.println("2. Cerrar programa.");
                 opcion = sc.nextInt();
@@ -43,7 +43,7 @@ public class ClienteMenu {
         String respuesta = "";
 
         do {
-            exito =false;
+            exito = false;
             try {
                 System.out.println("ID: ");
                 id = sc.next();
@@ -60,16 +60,16 @@ public class ClienteMenu {
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
                 if (respuesta.equals("si")) {
-                    exito=true;
+                    exito = true;
                 } else {
                     return null;
                 }
             }
         } while (exito);
-        System.out.println("El cliente " + nombre + " con ID " + id + " y telefono " + telefono+ " se ha creado correctamente");
+        System.out.println(
+                "El cliente " + nombre + " con ID " + id + " y telefono " + telefono + " se ha creado correctamente");
         return new Cliente(id, nombre, telefono);
-      
-              
+
     }
 
     public void modificarCliente() {
@@ -119,7 +119,6 @@ public class ClienteMenu {
 
     }
 
-
     public void borrarCliente() {
         String id;
         String respuesta;
@@ -129,7 +128,7 @@ public class ClienteMenu {
 
         System.out.println("El cliente ");
         clienteDB.mostrarClientesID(id);
-        System.out.println("se borrara"); 
+        System.out.println("se borrara");
         System.out.println("Quieres continuar?");
         respuesta = sc.next();
         respuesta = respuesta.toLowerCase();
@@ -138,7 +137,7 @@ public class ClienteMenu {
             clienteDB.borrarCliente(id);
             System.out.println("El cliente ha sido eliminado con éxito");
 
-        } else { 
+        } else {
             System.out.println("Se ha cancelado la operación");
         }
         menu();

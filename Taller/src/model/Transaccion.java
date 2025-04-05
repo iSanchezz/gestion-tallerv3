@@ -3,11 +3,11 @@ package model;
 import java.time.LocalDateTime;
 
 public class Transaccion {
-    private int id;
-    private String tipo;
-    private double cantidad;
-    private String descripcion;
-    private LocalDateTime fecha;
+    int id;
+    String tipo;
+    double cantidad;
+    String descripcion;
+    LocalDateTime fecha;
 
     public Transaccion(int id, String tipo, double cantidad, String descripcion) {
         this.id = id;
@@ -18,15 +18,35 @@ public class Transaccion {
 
     }
 
-    public int getId() { return id; }
-    public String getTipo() { return tipo; }
-    public double getCantidad() { return cantidad; }
-    public String getDescripcion() { return descripcion; }
-    public LocalDateTime getFecha() { return fecha; }
+    public int getId() {
+        return id;
+    }
 
+    public String getTipo() {
+        return tipo;
+    }
 
+    public double getCantidad() {
+        return cantidad;
+    }
 
-    public void setTipo(String tipo) { this.tipo = tipo; }
-    public void setCantidad(double cantidad) { this.cantidad = cantidad; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
-} 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+}

@@ -75,71 +75,99 @@ public class ClienteMenu {
     public void modificarCliente() {
         String id;
         int opcion;
-
-        System.out.println("ID del cliente: ");
-        id = sc.next();
-
         String nuevoNombre;
         int nuevoTelefono;
+        boolean exito;
+        String respuesta;
 
-        System.out.println("Qué quieres modificar?");
-        System.out.println("1. Nombre");
-        System.out.println("2. Telefono");
-        System.out.println("3. Todo");
-        System.out.println("4. Salir");
-        opcion = sc.nextInt();
+        do {
+            exito = false;
+            try {
+                System.out.println("ID del cliente: ");
+                id = sc.next();
 
-        switch (opcion) {
-            case 1 -> {
-                System.out.println("Nuevo nombre: ");
-                nuevoNombre = sc.next();
-                clienteDB.modificarNombreCliente(id, nuevoNombre);
+                System.out.println("Qué quieres modificar?");
+                System.out.println("1. Nombre");
+                System.out.println("2. Telefono");
+                System.out.println("3. Todo");
+                System.out.println("4. Salir");
+                opcion = sc.nextInt();
+
+                switch (opcion) {
+                    case 1 -> {
+                        System.out.println("Nuevo nombre: ");
+                        nuevoNombre = sc.next();
+                        clienteDB.modificarNombreCliente(id, nuevoNombre);
+                    }
+
+                    case 2 -> {
+                        System.out.println("Nuevo telefono: ");
+                        nuevoTelefono = sc.nextInt();
+                        clienteDB.modificarTelefonoCliente(id, nuevoTelefono);
+                    }
+
+                    case 3 -> {
+                        System.out.println("Nuevo nombre: ");
+                        nuevoNombre = sc.next();
+
+                        System.out.println("Nuevo telefono:");
+                        nuevoTelefono = sc.nextInt();
+                        clienteDB.modificarNombreCliente(id, nuevoNombre);
+                        clienteDB.modificarTelefonoCliente(id, nuevoTelefono);
+                    }
+
+                    case 4 -> menu();
+
+                    default -> System.out.println("Opcion no valida");
+                }
+                exito = true;
+
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("¿Quieres volver a intentarlo? (si/no)");
+                respuesta = sc.next().toLowerCase();
+                if (!respuesta.equals("si")) {
+                    exito = true;
+                }
             }
-
-            case 2 -> {
-                System.out.println("Nuevo telefono: ");
-                nuevoTelefono = sc.nextInt();
-                clienteDB.modificarTelefonoCliente(id, nuevoTelefono);
-            }
-
-            case 3 -> {
-                System.out.println("Nuevo nombre: ");
-                nuevoNombre = sc.next();
-
-                System.out.println("Nuevo telefono:");
-                nuevoTelefono = sc.nextInt();
-                clienteDB.modificarNombreCliente(id, nuevoNombre);
-                clienteDB.modificarTelefonoCliente(id, nuevoTelefono);
-            }
-
-            case 4 -> menu();
-
-            default -> System.out.println("Opcion no valida");
-        }
-
+        } while (!exito);
+        menu();
     }
 
     public void borrarCliente() {
         String id;
         String respuesta;
+        boolean exito;
 
-        System.out.println("ID del cliente: ");
-        id = sc.next();
+        do {
+            exito = false;
+            try {
+                System.out.println("ID del cliente: ");
+                id = sc.next();
 
-        System.out.println("El cliente ");
-        clienteDB.mostrarClientesID(id);
-        System.out.println("se borrara");
-        System.out.println("Quieres continuar?");
-        respuesta = sc.next();
-        respuesta = respuesta.toLowerCase();
+                System.out.println("El cliente ");
+                clienteDB.mostrarClientesID(id);
+                System.out.println("se borrara");
+                System.out.println("Quieres continuar?");
+                respuesta = sc.next().toLowerCase();
 
-        if ("si".equals(respuesta)) {
-            clienteDB.borrarCliente(id);
-            System.out.println("El cliente ha sido eliminado con éxito");
+                if ("si".equals(respuesta)) {
+                    clienteDB.borrarCliente(id);
+                    System.out.println("El cliente ha sido eliminado con éxito");
+                } else {
+                    System.out.println("Se ha cancelado la operación");
+                }
+                exito = true;
 
-        } else {
-            System.out.println("Se ha cancelado la operación");
-        }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("¿Quieres volver a intentarlo? (si/no)");
+                respuesta = sc.next().toLowerCase();
+                if (!respuesta.equals("si")) {
+                    exito = true;
+                }
+            }
+        } while (!exito);
         menu();
     }
 

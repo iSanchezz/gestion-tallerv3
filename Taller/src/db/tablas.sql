@@ -1,3 +1,5 @@
+CREATE DATABASE taller;
+USE DATABASE taller;
 CREATE TABLE clientes(
     id VARCHAR(12) PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,

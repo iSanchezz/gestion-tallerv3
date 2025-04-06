@@ -81,7 +81,7 @@ public class ProveedorMenu {
 
         String nuevoNombre;
         int nuevoTelefono;
-
+        
         System.out.println("Qué quieres modificar?");
         System.out.println("1. Nombre");
         System.out.println("2. Telefono");
@@ -99,8 +99,8 @@ public class ProveedorMenu {
             case 2 -> {
                 System.out.println("Nuevo telefono: ");
                 nuevoTelefono = sc.nextInt();
-                proveedorDB.modificarTelefonoProveedor(id, nuevoTelefono); // Error porque telefono aqui es int y en el
-                                                                           // DAO es String
+                proveedorDB.modificarTelefonoProveedor(id, nuevoTelefono); 
+                                                                           
             }
 
             case 3 -> {
@@ -110,7 +110,7 @@ public class ProveedorMenu {
                 System.out.println("Nuevo telefono:");
                 nuevoTelefono = sc.nextInt();
                 proveedorDB.modificarNombreProveedor(id, nuevoNombre);
-                proveedorDB.modificarTelefonoProveedor(id, nuevoTelefono); // Mismo error que en el caso 2
+                proveedorDB.modificarTelefonoProveedor(id, nuevoTelefono);
             }
 
             case 4 -> menu();

@@ -39,18 +39,34 @@ public class ProductoMenu {
         String id;
         String nombre;
         double precio;
+        boolean exito;
+        String respuesta;
+        do{
+            exito=false;
+            try{ System.out.println("ID: ");
+            id = sc.next();
 
-        System.out.println("ID: ");
-        id = sc.next();
+            System.out.println("Nombre: ");
+            nombre = sc.next();
 
-        System.out.println("Nombre: ");
-        nombre = sc.next();
-
-        System.out.println(" Precio: ");
-        precio = sc.nextDouble();
-
+            System.out.println(" Precio: ");
+            precio = sc.nextDouble();
+            System.out.println("Se ha creado el producto " + nombre + " con precio0 " + precio );
+           
         return new Producto(id, nombre, precio);
-      
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("¿Quieres volver a intentarlo? (si/no)");
+            respuesta = sc.next().toLowerCase();
+            if (!respuesta.equals("si")) {
+                return null;
+            }
+            else{
+                exito=true;
+                }
+            }
+        }while(exito);
+        return null;
     }
 
     public void modificarProducto() {
@@ -102,9 +118,9 @@ public class ProductoMenu {
         String id;
         String respuesta;
 
+        try{
         System.out.println("ID del producto: ");
         id = sc.next();
-
         System.out.println("El producto ");
         productoDB.mostrarProductosID(id);
         System.out.println(" se borrará.");
@@ -120,6 +136,9 @@ public class ProductoMenu {
             System.out.println("Se ha cancelado la operación");
         }
         menu();
+         }catch(Exception e){
+           System.out.println(e.getMessage());
+    }
     }
 
 }

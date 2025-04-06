@@ -5,25 +5,34 @@ public class Vehiculo {
     String marca;
     String modelo;
     String estado;
-    String dueño;
+    String duenio;
 
-    public Vehiculo(String marca, String modelo, String id, String estado, String dueño) {
+    public Vehiculo(String marca, String modelo, String id, String estado, String duenio) {
         this.marca = marca;
         this.modelo = modelo;
         this.id = id;
         this.estado = estado;
-        this.dueño=dueño;
+        this.duenio = duenio;
     }
 
+    public String getMarca() {
+        return this.marca;
+    }
 
-    public String getMarca(){return this.marca;}
+    public String getModelo() {
+        return this.modelo;
+    }
 
-    public String getModelo(){return this.modelo;}
+    public String getId() {
+        return this.id;
+    }
 
-    public String getId(){return this.id;}
+    public String getEstado() {
+        return this.estado;
+    }
 
-    public String getEstado(){return this.estado;}
-
-    public String getDueño(){return this.dueño;}
+    public String getduenio() {
+        return this.duenio;
+    }
 
 }

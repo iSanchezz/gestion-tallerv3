@@ -25,8 +25,8 @@ CREATE TABLE vehiculos(
     id VARCHAR(15) PRIMARY KEY,
     modelo VARCHAR(30) NOT NULL,
     estado VARCHAR(50) NOT NULL,
-    dueño VARCHAR(12) NOT NULL,
-    FOREIGN KEY (dueño) REFERENCES clientes(id)
+    duenio VARCHAR(12) NOT NULL,
+    FOREIGN KEY (duenio) REFERENCES clientes(id)
 );
 CREATE TABLE citas(
     numerocita INT(10) PRIMARY KEY,

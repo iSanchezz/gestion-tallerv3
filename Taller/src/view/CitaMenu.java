@@ -44,14 +44,14 @@ public class CitaMenu {
         int numeroCita = 0;
         LocalDate fecha = null;
         LocalTime hora = null;
-        int año;
+        int anio;
         int mes;
         int dia;
         int horas;
         int minutos;
         String respuesta;
         String idVehiculo = "";
-        String dueño = "";
+        String duenio = "";
         boolean exito;
 
         do {
@@ -59,7 +59,7 @@ public class CitaMenu {
             try {
                 System.out.println("ID del vehiculo: ");
                 idVehiculo = sc.next();
-                dueño = vehiculoDB.mostrarDueñoVehiculo(idVehiculo);
+                duenio = vehiculoDB.mostrarduenioVehiculo(idVehiculo);
 
                 System.out.println("Dia: ");
                 dia = sc.nextInt();
@@ -67,8 +67,8 @@ public class CitaMenu {
                 System.out.println("Mes: ");
                 mes = sc.nextInt();
 
-                System.out.println("Año: ");
-                año = sc.nextInt();
+                System.out.println("anio: ");
+                anio = sc.nextInt();
 
                 System.out.println("Hora: ");
                 horas = sc.nextInt();
@@ -76,12 +76,13 @@ public class CitaMenu {
                 System.out.println("Minutos: ");
                 minutos = sc.nextInt();
 
-                fecha = LocalDate.of(año, mes, dia);
+                fecha = LocalDate.of(anio, mes, dia);
                 hora = LocalTime.of(horas, minutos);
 
                 numeroCita = citaDB.generarNumCita();
 
-                System.out.println("Se ha creado una cita el " + fecha + " a las " + hora + " con el cliente " + dueño);
+                System.out
+                        .println("Se ha creado una cita el " + fecha + " a las " + hora + " con el cliente " + duenio);
                 exito = true;
                 Cita cita = new Cita(numeroCita, fecha, hora, idVehiculo);
                 return cita;
@@ -92,10 +93,9 @@ public class CitaMenu {
                 respuesta = sc.next().toLowerCase();
                 if (!respuesta.equals("si")) {
                     return null;
+                } else {
+                    exito = true;
                 }
-                else{
-                    exito=true;
-                    }
             }
         } while (!exito);
         return null;
@@ -108,7 +108,7 @@ public class CitaMenu {
         int opcion;
         int nuevoDia;
         int nuevoMes;
-        int nuevoAño;
+        int nuevoanio;
         int nuevaHora;
         int nuevosMinutos;
         boolean exito;
@@ -136,10 +136,10 @@ public class CitaMenu {
                         System.out.println("Mes: ");
                         nuevoMes = sc.nextInt();
 
-                        System.out.println("Año: ");
-                        nuevoAño = sc.nextInt();
+                        System.out.println("anio: ");
+                        nuevoanio = sc.nextInt();
 
-                        nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
+                        nuevaFecha = LocalDate.of(nuevoanio, nuevoMes, nuevoDia);
                         citaDB.modificarFechaCita(numeroCita, nuevaFecha);
                     }
                     case 2 -> {
@@ -159,8 +159,8 @@ public class CitaMenu {
                         System.out.println("Mes: ");
                         nuevoMes = sc.nextInt();
 
-                        System.out.println("Año: ");
-                        nuevoAño = sc.nextInt();
+                        System.out.println("anio: ");
+                        nuevoanio = sc.nextInt();
 
                         System.out.println("Hora: ");
                         nuevaHora = sc.nextInt();
@@ -168,7 +168,7 @@ public class CitaMenu {
                         System.out.println("Minutos:");
                         nuevosMinutos = sc.nextInt();
 
-                        nuevaFecha = LocalDate.of(nuevoAño, nuevoMes, nuevoDia);
+                        nuevaFecha = LocalDate.of(nuevoanio, nuevoMes, nuevoDia);
                         citaDB.modificarFechaCita(numeroCita, nuevaFecha);
 
                         nuevoHorario = LocalTime.of(nuevaHora, nuevosMinutos);

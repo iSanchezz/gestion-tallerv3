@@ -89,14 +89,15 @@ public class VehiculoDB {
         }
 
     }
-    public void modificarDueñoVehiculo(String id, String nuevodueño) {
+
+    public void modificarduenioVehiculo(String id, String nuevoduenio) {
         Connection conexion = dao.ConexionDB.conectar();
 
-        String query = "UPDATE vehiculos SET dueño = ? WHERE id=" + id;
+        String query = "UPDATE vehiculos SET duenio = ? WHERE id=" + id;
 
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
-            stmt.setString(1, nuevodueño);
+            stmt.setString(1, nuevoduenio);
             stmt.executeUpdate();
 
             System.out.println("los datos se han actualizado con exito");
@@ -106,101 +107,103 @@ public class VehiculoDB {
         }
 
     }
-    public void borrarVehiculo(String id){
 
-        Connection conexion= dao.ConexionDB.conectar();
+    public void borrarVehiculo(String id) {
 
-        String query= "DELETE * FROM vehiculos WHERE id="+id;
+        Connection conexion = dao.ConexionDB.conectar();
 
-        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+        String query = "DELETE * FROM vehiculos WHERE id=" + id;
+
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
             stmt.executeUpdate();
             System.out.println("los datos se han actualizado con exito");
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("error al actualizar datos");
 
         }
     }
-    public void mostrarVehiculos(){
 
-        Connection conexion= dao.ConexionDB.conectar();
+    public void mostrarVehiculos() {
 
-        String query="SELECT * FROM vehiculos";
-        try(Statement stmt = conexion.createStatement();
-        ResultSet rs=stmt.executeQuery(query)){
-            
-            while(rs.next()){
-                System.out.println("Matricula: "+ rs.getString("matricula"));
-                System.out.println("Marca: "+ rs.getString("marca"));
-                System.out.println("Modelo: "+ rs.getString("modelo"));
-                System.out.println("Estado: "+ rs.getString("estado"));
-                System.out.println("-------------------------");
-
-            }
-
-        }catch(SQLException e){
-            System.out.println("error al realizar la consulta"+ e.getMessage());
-
-        }
-    }
-    public void mostrarVehiculosID(String id){
-
-        Connection conexion= dao.ConexionDB.conectar();
-
-        String query="SELECT * FROM vehiculos WHERE id="+id;
-        try(Statement stmt = conexion.createStatement();
-        ResultSet rs=stmt.executeQuery(query)){
-            
-            while(rs.next()){
-                System.out.println("Matricula: "+ rs.getString("matricula"));
-                System.out.println("Marca: "+ rs.getString("marca"));
-                System.out.println("Modelo: "+ rs.getString("modelo"));
-                System.out.println("Estado: "+ rs.getString("estado"));
-                System.out.println("-------------------------");
-            }
-            
-        }catch(SQLException e){
-            System.out.println("error al realizar la consulta"+ e.getMessage());
-
-        }
-    }
-
-    public String mostrarDueñoVehiculo(String id){
         Connection conexion = dao.ConexionDB.conectar();
-   
-       String query="SELECT dueño FROM vehiculos WHERE id= "+id;
-   
-        try(Statement stmt = conexion.createStatement();
-               ResultSet rs=stmt.executeQuery(query)){
-               
-                      return rs.getString(query);
-   
-               }catch(SQLException e){
-                   System.out.println("error al realizar la consulta"+ e.getMessage());
-                   
-               }
-               return null;
-       }
 
-       public boolean comprobarVehiculo(String id){
+        String query = "SELECT * FROM vehiculos";
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
 
-        ResultSet resultado=null;
-        Connection conexion= dao.ConexionDB.conectar();
-        String query="SELECT COUNT FROM vehiculos WHERE id= ?";
+            while (rs.next()) {
+                System.out.println("Matricula: " + rs.getString("matricula"));
+                System.out.println("Marca: " + rs.getString("marca"));
+                System.out.println("Modelo: " + rs.getString("modelo"));
+                System.out.println("Estado: " + rs.getString("estado"));
+                System.out.println("-------------------------");
 
+            }
 
-        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
+
+        }
+    }
+
+    public void mostrarVehiculosID(String id) {
+
+        Connection conexion = dao.ConexionDB.conectar();
+
+        String query = "SELECT * FROM vehiculos WHERE id=" + id;
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                System.out.println("Matricula: " + rs.getString("matricula"));
+                System.out.println("Marca: " + rs.getString("marca"));
+                System.out.println("Modelo: " + rs.getString("modelo"));
+                System.out.println("Estado: " + rs.getString("estado"));
+                System.out.println("-------------------------");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
+
+        }
+    }
+
+    public String mostrarduenioVehiculo(String id) {
+        Connection conexion = dao.ConexionDB.conectar();
+
+        String query = "SELECT duenio FROM vehiculos WHERE id= " + id;
+
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
+
+            return rs.getString(query);
+
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
+
+        }
+        return null;
+    }
+
+    public boolean comprobarVehiculo(String id) {
+
+        ResultSet resultado = null;
+        Connection conexion = dao.ConexionDB.conectar();
+        String query = "SELECT COUNT FROM vehiculos WHERE id= ?";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, id);
-            resultado=stmt.executeQuery();
-            if (resultado.next()) {           
-                        return true;
-                }
+            resultado = stmt.executeQuery();
+            if (resultado.next()) {
+                return true;
+            }
 
-        }catch(SQLException e){
-            System.out.println("error al verificar el dato"+ e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("error al verificar el dato" + e.getMessage());
 
         }
         return false;
     }
-    
+
 }

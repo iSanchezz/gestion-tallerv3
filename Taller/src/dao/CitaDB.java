@@ -8,40 +8,34 @@ import java.sql.Statement;
 import java.time.*;
 
 public class CitaDB {
-    
 
+    public int generarNumCita() {
+        Connection conexion = dao.ConexionDB.conectar();
 
+        String query = "SELECT MAX(numerocita) FROM citas";
 
-public int generarNumCita(){
-     Connection conexion = dao.ConexionDB.conectar();
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
 
-    String query="SELECT MAX(numerocita) FROM citas";
+            return rs.getInt(query) + 1;
 
-     try(Statement stmt = conexion.createStatement();
-            ResultSet rs=stmt.executeQuery(query)){
-            
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
 
-                   return rs.getInt(query) +1;
-
-
-            }catch(SQLException e){
-                System.out.println("error al realizar la consulta"+ e.getMessage());
-                
-            }
-            return 0;
+        }
+        return 0;
     }
 
-public void insertarCita(model.Cita cita){
-    Connection conexion = dao.ConexionDB.conectar();
+    public void insertarCita(model.Cita cita) {
+        Connection conexion = dao.ConexionDB.conectar();
 
-    int numerocita=cita.getNumeroCita();
+        int numerocita = cita.getNumeroCita();
 
-    LocalDate  fecha=cita.getFecha();
-    LocalTime hora=cita.getHora();
-    String idvehiculo=cita.getIdVehiculo();
+        LocalDate fecha = cita.getFecha();
+        LocalTime hora = cita.getHora();
+        String idvehiculo = cita.getIdVehiculo();
 
-
-    String query = "INSERT INTO citas (numerocita, fecha, hora, idvehiculo) VALUES (?,?,?,?)";
+        String query = "INSERT INTO citas (numerocita, fecha, hora, idvehiculo) VALUES (?,?,?,?)";
 
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
@@ -58,166 +52,171 @@ public void insertarCita(model.Cita cita){
             System.out.println("error al introducir datos");
 
         }
-}
-public void modificarFechaCita(int numerocita, LocalDate nuevafecha){
-
-    Connection conexion= dao.ConexionDB.conectar();
-
-    String query="UPDATE citas SET fecha = ? WHERE numerocita="+numerocita;
-
-    try(PreparedStatement stmt= conexion.prepareStatement(query)){
-
-        stmt.setDate(2, java.sql.Date.valueOf(nuevafecha));
-        System.out.println("los datos se han actualizado con exito");
-
-        stmt.executeUpdate();
-
-    }catch(SQLException e){
-        System.out.println("error al actualizar datos");
     }
-}
-public void modificarHoraCita(int numerocita, LocalTime nuevahora){
 
-    Connection conexion= dao.ConexionDB.conectar();
+    public void modificarFechaCita(int numerocita, LocalDate nuevafecha) {
 
-    String query="UPDATE citas SET hora = ? WHERE numerocita="+numerocita;
+        Connection conexion = dao.ConexionDB.conectar();
 
-    try(PreparedStatement stmt= conexion.prepareStatement(query)){
+        String query = "UPDATE citas SET fecha = ? WHERE numerocita=" + numerocita;
 
-        stmt.setTime(2, java.sql.Time.valueOf(nuevahora));
-        stmt.executeUpdate();
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
-        System.out.println("los datos se han actualizado con exito");
+            stmt.setDate(2, java.sql.Date.valueOf(nuevafecha));
+            System.out.println("los datos se han actualizado con exito");
 
+            stmt.executeUpdate();
 
-    }catch(SQLException e){
-        System.out.println("error al actualizar datos");
+        } catch (SQLException e) {
+            System.out.println("error al actualizar datos");
+        }
     }
-}
-public void borrarCita(int numeroCita){
 
-    Connection conexion= dao.ConexionDB.conectar();
+    public void modificarHoraCita(int numerocita, LocalTime nuevahora) {
 
-    String query= "DELETE * FROM citas WHERE id="+numeroCita;
+        Connection conexion = dao.ConexionDB.conectar();
 
-    try(PreparedStatement stmt= conexion.prepareStatement(query)){
-        stmt.executeUpdate();
-        System.out.println("los datos se han actualizado con exito");
-    }catch(SQLException e){
-        System.out.println("error al actualizar datos");
+        String query = "UPDATE citas SET hora = ? WHERE numerocita=" + numerocita;
 
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+
+            stmt.setTime(2, java.sql.Time.valueOf(nuevahora));
+            stmt.executeUpdate();
+
+            System.out.println("los datos se han actualizado con exito");
+
+        } catch (SQLException e) {
+            System.out.println("error al actualizar datos");
+        }
     }
-}
-public void mostrarCitasFuturo(){
 
-    Connection conexion= dao.ConexionDB.conectar();
+    public void borrarCita(int numeroCita) {
 
-    String query="SELECT * FROM citas WHERE fecha >= CURDATE()";
-    try(Statement stmt = conexion.createStatement();
-    ResultSet rs=stmt.executeQuery(query)){
-        
-        while(rs.next()){
-            System.out.println("Numero: "+ rs.getInt("numerocita"));
-            System.out.println("Nombre: "+ rs.getDate("fecha"));
-            System.out.println("Telefono: "+ rs.getTime("hora"));
-            System.out.println("Telefono: "+ rs.getString("idvehiculo"));
+        Connection conexion = dao.ConexionDB.conectar();
 
-            System.out.println("-------------------------");
+        String query = "DELETE * FROM citas WHERE id=" + numeroCita;
+
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+            stmt.executeUpdate();
+            System.out.println("los datos se han actualizado con exito");
+        } catch (SQLException e) {
+            System.out.println("error al actualizar datos");
 
         }
-
-    }catch(SQLException e){
-        System.out.println("error al realizar la consulta"+ e.getMessage());
-
     }
-}
-public void mostrarCitasPasado(){
 
-    Connection conexion= dao.ConexionDB.conectar();
+    public void mostrarCitasFuturo() {
 
-    String query="SELECT * FROM citas WHERE fecha < CURDATE()";
-    try(Statement stmt = conexion.createStatement();
-    ResultSet rs=stmt.executeQuery(query)){
-        
-        while(rs.next()){
-            System.out.println("Numero: "+ rs.getInt("numerocita"));
-            System.out.println("Nombre: "+ rs.getDate("fecha"));
-            System.out.println("Telefono: "+ rs.getTime("hora"));
-            System.out.println("Telefono: "+ rs.getString("idvehiculo"));
+        Connection conexion = dao.ConexionDB.conectar();
 
-            System.out.println("-------------------------");
+        String query = "SELECT * FROM citas WHERE fecha >= CURDATE()";
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                System.out.println("Numero: " + rs.getInt("numerocita"));
+                System.out.println("Nombre: " + rs.getDate("fecha"));
+                System.out.println("Telefono: " + rs.getTime("hora"));
+                System.out.println("Telefono: " + rs.getString("idvehiculo"));
+
+                System.out.println("-------------------------");
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
 
         }
-
-    }catch(SQLException e){
-        System.out.println("error al realizar la consulta"+ e.getMessage());
-
     }
-}
-public void mostrarCitasHoy(){
 
-    Connection conexion= dao.ConexionDB.conectar();
+    public void mostrarCitasPasado() {
 
-    String query="SELECT * FROM citas WHERE fecha = CURDATE()";
-    try(Statement stmt = conexion.createStatement();
-    ResultSet rs=stmt.executeQuery(query)){
-        
-        while(rs.next()){
-            System.out.println("Numero: "+ rs.getInt("numerocita"));
-            System.out.println("Nombre: "+ rs.getDate("fecha"));
-            System.out.println("Telefono: "+ rs.getTime("hora"));
-            System.out.println("Telefono: "+ rs.getString("idvehiculo"));
+        Connection conexion = dao.ConexionDB.conectar();
 
-            System.out.println("-------------------------");
+        String query = "SELECT * FROM citas WHERE fecha < CURDATE()";
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                System.out.println("Numero: " + rs.getInt("numerocita"));
+                System.out.println("Nombre: " + rs.getDate("fecha"));
+                System.out.println("Telefono: " + rs.getTime("hora"));
+                System.out.println("Telefono: " + rs.getString("idvehiculo"));
+
+                System.out.println("-------------------------");
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
 
         }
-
-    }catch(SQLException e){
-        System.out.println("error al realizar la consulta"+ e.getMessage());
-
     }
-}
 
-public void mostrarCitasID(int numerocita){
+    public void mostrarCitasHoy() {
 
-    Connection conexion= dao.ConexionDB.conectar();
+        Connection conexion = dao.ConexionDB.conectar();
 
-    String query="SELECT * FROM citas WHERE numerocita="+ numerocita;
-    try(Statement stmt = conexion.createStatement();
-    ResultSet rs=stmt.executeQuery(query)){
-        
-        while(rs.next()){
-            System.out.println("Numero: "+ rs.getInt("numerocita"));
-            System.out.println("Nombre: "+ rs.getDate("fecha"));
-            System.out.println("Telefono: "+ rs.getTime("hora"));
-            System.out.println("Telefono: "+ rs.getString("idvehiculo"));
+        String query = "SELECT * FROM citas WHERE fecha = CURDATE()";
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
 
-            System.out.println("-------------------------");
+            while (rs.next()) {
+                System.out.println("Numero: " + rs.getInt("numerocita"));
+                System.out.println("Nombre: " + rs.getDate("fecha"));
+                System.out.println("Telefono: " + rs.getTime("hora"));
+                System.out.println("Telefono: " + rs.getString("idvehiculo"));
+
+                System.out.println("-------------------------");
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
 
         }
-
-    }catch(SQLException e){
-        System.out.println("error al realizar la consulta"+ e.getMessage());
-
     }
+
+    public void mostrarCitasID(int numerocita) {
+
+        Connection conexion = dao.ConexionDB.conectar();
+
+        String query = "SELECT * FROM citas WHERE numerocita=" + numerocita;
+        try (Statement stmt = conexion.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                System.out.println("Numero: " + rs.getInt("numerocita"));
+                System.out.println("Nombre: " + rs.getDate("fecha"));
+                System.out.println("Telefono: " + rs.getTime("hora"));
+                System.out.println("Telefono: " + rs.getString("idvehiculo"));
+
+                System.out.println("-------------------------");
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("error al realizar la consulta" + e.getMessage());
+
+        }
     }
-    public boolean comprobarCita(String id){
 
-        ResultSet resultado=null;
-        Connection conexion= dao.ConexionDB.conectar();
-        String query="SELECT COUNT FROM citas WHERE numerocita= ?";
+    public boolean comprobarCita(String id) {
 
+        ResultSet resultado = null;
+        Connection conexion = dao.ConexionDB.conectar();
+        String query = "SELECT COUNT FROM citas WHERE numerocita= ?";
 
-        try(PreparedStatement stmt= conexion.prepareStatement(query)){
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
 
             stmt.setString(1, id);
-            resultado=stmt.executeQuery();
-            if (resultado.next()) {           
-                        return true;
-                }
+            resultado = stmt.executeQuery();
+            if (resultado.next()) {
+                return true;
+            }
 
-        }catch(SQLException e){
-            System.out.println("error al verificar el dato"+ e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("error al verificar el dato" + e.getMessage());
 
         }
         return false;

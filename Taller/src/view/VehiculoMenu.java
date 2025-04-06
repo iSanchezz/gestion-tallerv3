@@ -22,7 +22,7 @@ public class VehiculoMenu {
             case 1 -> vehiculoDB.insertarVehiculo(crearVehiculo());
             case 2 -> modificarVehiculo();
             case 3 -> borrarVehiculo();
-            case 4 -> { 
+            case 4 -> {
                 System.out.println("1. Al menú principal");
                 System.out.println("2. Cerrar programa.");
                 opcion = sc.nextInt();
@@ -39,12 +39,12 @@ public class VehiculoMenu {
         String modelo = "";
         String matricula = "";
         String estado = "";
-        boolean exito ;
+        boolean exito;
         String respuesta = "";
-        String dueño="";
+        String duenio = "";
 
         do {
-            exito=false;
+            exito = false;
             try {
                 System.out.println("Marca: ");
                 marca = sc.next();
@@ -58,11 +58,10 @@ public class VehiculoMenu {
                 System.out.println("Estado: ");
                 estado = sc.next();
 
-                System.out.println("ID del dueño del vehiculo: ");
-                dueño=sc.next();
+                System.out.println("ID del duenio del vehiculo: ");
+                duenio = sc.next();
 
-
-                Vehiculo vehiculo = new Vehiculo(marca, modelo, matricula, estado, dueño);
+                Vehiculo vehiculo = new Vehiculo(marca, modelo, matricula, estado, duenio);
                 System.out.println("El vehículo " + marca + " " + modelo + " con matrícula " + matricula + " y estado "
                         + estado + " se ha creado correctamente");
                 exito = true;
@@ -73,7 +72,7 @@ public class VehiculoMenu {
                 respuesta = sc.next();
                 respuesta = respuesta.toLowerCase();
                 if (respuesta.equals("si")) {
-                    exito=true;
+                    exito = true;
                 } else {
                     return null;
                 }
@@ -81,8 +80,8 @@ public class VehiculoMenu {
         } while (exito);
 
         System.out.println("El vehículo " + marca + " " + modelo + " con matrícula " + matricula + " y estado "
-                        + estado + " se ha creado correctamente");
-                return new Vehiculo(marca, modelo, respuesta, estado, dueño);
+                + estado + " se ha creado correctamente");
+        return new Vehiculo(marca, modelo, respuesta, estado, duenio);
     }
 
     public void modificarVehiculo() {
@@ -122,7 +121,7 @@ public class VehiculoMenu {
         System.out.println("ID del vehiculo: ");
         id = sc.next();
 
-        System.out.println("El vehiculo "); 
+        System.out.println("El vehiculo ");
         vehiculoDB.mostrarVehiculosID(id);
         System.out.println(" se borrará.");
         System.out.println("Quieres continuar?");
@@ -133,7 +132,7 @@ public class VehiculoMenu {
             vehiculoDB.borrarVehiculo(id);
             System.out.println("El vehiculo ha sido eliminado con éxito");
 
-        } else { 
+        } else {
             System.out.println("Se ha cancelado la operación");
         }
         menu();

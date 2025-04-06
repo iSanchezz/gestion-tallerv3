@@ -116,7 +116,7 @@ public class EconomiaMenu {
     public void mostrarTransacciones() {
         int dia;
         int mes;
-        int año;
+        int anio;
         LocalDate inicio;
         LocalDate fin;
         boolean exito;
@@ -130,18 +130,18 @@ public class EconomiaMenu {
                 dia = sc.nextInt();
                 System.out.println("Mes: ");
                 mes = sc.nextInt();
-                System.out.println("Año: ");
-                año = sc.nextInt();
-                inicio = LocalDate.of(año, mes, dia);
+                System.out.println("anio: ");
+                anio = sc.nextInt();
+                inicio = LocalDate.of(anio, mes, dia);
 
                 System.out.println("Fecha fin:");
                 System.out.println("Día: ");
                 dia = sc.nextInt();
                 System.out.println("Mes: ");
                 mes = sc.nextInt();
-                System.out.println("Año: ");
-                año = sc.nextInt();
-                fin = LocalDate.of(año, mes, dia);
+                System.out.println("anio: ");
+                anio = sc.nextInt();
+                fin = LocalDate.of(anio, mes, dia);
 
                 economiaDB.mostrarTransaccionesPorPeriodo(inicio, fin);
                 exito = true;

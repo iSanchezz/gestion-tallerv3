@@ -93,6 +93,9 @@ public class CitaMenu {
                 if (!respuesta.equals("si")) {
                     return null;
                 }
+                else{
+                    exito=true;
+                    }
             }
         } while (!exito);
         return null;
